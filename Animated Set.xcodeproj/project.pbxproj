@@ -54,7 +54,7 @@
 		9EE5A53123E1F55F006E7916 = {
 			isa = PBXGroup;
 			children = (
-				9EE5A53C23E1F55F006E7916 /* Graphical Set */,
+				9EE5A53C23E1F55F006E7916 /* Animated Set */,
 				9EE5A53B23E1F55F006E7916 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,7 +67,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9EE5A53C23E1F55F006E7916 /* Graphical Set */ = {
+		9EE5A53C23E1F55F006E7916 /* Animated Set */ = {
 			isa = PBXGroup;
 			children = (
 				9EE5A55123E1F56E006E7916 /* Supporting Files */,
@@ -83,7 +83,7 @@
 				9EE5A54623E1F562006E7916 /* Assets.xcassets */,
 				9EE5A54B23E1F562006E7916 /* Info.plist */,
 			);
-			path = "Graphical Set";
+			path = "Animated Set";
 			sourceTree = "<group>";
 		};
 		9EE5A55123E1F56E006E7916 /* Supporting Files */ = {
