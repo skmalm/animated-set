@@ -1,0 +1,487 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red108\green121\blue134;\red31\green31\blue36;\red255\green255\blue255;
+\red252\green95\blue163;\red93\green216\blue255;\red208\green168\blue255;\red65\green161\blue192;\red161\green103\blue230;
+\red103\green183\blue164;\red161\green103\blue230;\red208\green191\blue105;\red103\green183\blue164;\red252\green106\blue93;
+\red158\green241\blue221;\red158\green241\blue221;\red208\green168\blue255;}
+{\*\expandedcolortbl;;\csgenericrgb\c42394\c47462\c52518;\csgenericrgb\c12054\c12284\c14131;\csgenericrgb\c100000\c100000\c100000\c85000;
+\csgenericrgb\c98839\c37355\c63833;\csgenericrgb\c36295\c84643\c99897;\csgenericrgb\c81569\c65882\c100000;\csgenericrgb\c25490\c63137\c75294;\csgenericrgb\c63137\c40392\c90196;
+\csgenericrgb\c40538\c71705\c64209;\csgenericrgb\c63232\c40219\c90115;\csgenericrgb\c81498\c74939\c41233;\csgenericrgb\c40392\c71765\c64314;\csgenericrgb\c98912\c41558\c36568;
+\csgenericrgb\c61961\c94510\c86667;\csgenericrgb\c62145\c94386\c86819;\csgenericrgb\c81681\c65692\c99927;}
+\margl1440\margr1440\vieww27300\viewh13840\viewkind0
+\deftab593
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 This is the state of my ViewController file and AllCardsView file upon giving up and letting the allCardsView access the model. The problem is that layoutSubviews is called after everything gets set up, so the cards get re-set without any tapGestures. Upon pressing New Game, this is fixed, but it seems that no matter what I do, layoutSubviews is always called AFTER every other set up function has finished.\
+\
+//\cf4 \
+\cf2 //  ViewController.swift\cf4 \
+\cf2 //  Graphical Set\cf4 \
+\cf2 //\cf4 \
+\cf2 //  Created by Sebastian Malm on 1/29/20.\cf4 \
+\cf2 //  Copyright \'a9 2020 SebastianMalm. All rights reserved.\cf4 \
+\cf2 //\cf4 \
+\
+
+\f1\b \cf5 import
+\f0\b0 \cf4  UIKit\
+\
+
+\f1\b \cf5 class
+\f0\b0 \cf4  \cf6 ViewController\cf4 : \cf7 UIViewController\cf4  \{\
+\
+    
+\f1\b \cf5 override
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 viewDidLoad\cf4 () \{\
+        
+\f1\b \cf5 super
+\f0\b0 \cf4 .\cf9 viewDidLoad\cf4 ()\
+        \cf2 // Set basic programmatic styling then start a new game\cf4 \
+        \cf10 dealButton\cf4 .\cf11 layer\cf4 .\cf11 cornerRadius\cf4  = \cf12 12.0\cf4 \
+        \cf13 startNewGame\cf4 ()\
+        \cf9 print\cf4 (\cf14 "end of viewDidLoad"\cf4 )\
+    \}\
+\
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 allCardsView\cf4 : \cf15 AllCardsView\cf4 ! \{ 
+\f1\b \cf5 didSet
+\f0\b0 \cf4  \{\
+        \cf9 print\cf4 (\cf14 "allCardsView was just finished being set"\cf4 )\
+        \cf2 // add swipe down to deal gesture to allCardsView\cf4 \
+        
+\f1\b \cf5 let
+\f0\b0 \cf4  swipe = \cf7 UISwipeGestureRecognizer\cf4 (target: 
+\f1\b \cf5 self
+\f0\b0 \cf4 , action: 
+\f1\b \cf5 #selector
+\f0\b0 \cf4 (\cf13 swipeAction\cf4 ))\
+        swipe.\cf11 direction\cf4  = .\cf11 down\cf4 \
+        \cf10 allCardsView\cf4 .\cf9 addGestureRecognizer\cf4 (swipe)\
+        \}\}\
+    \
+    
+\f1\b \cf5 @objc
+\f0\b0 \cf4  
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 swipeAction\cf4 () \{\
+        \cf13 pressDealButton\cf4 (\cf10 dealButton\cf4 )\
+    \}\
+    \
+    
+\f1\b \cf5 @objc
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 tapCard\cf4 (byHandlingGestureRecognizedBy recognizer: \cf7 UITapGestureRecognizer\cf4 ) \{\
+        
+\f1\b \cf5 if
+\f0\b0 \cf4  recognizer.\cf11 state\cf4  == .\cf11 ended\cf4  \{\
+            
+\f1\b \cf5 let
+\f0\b0 \cf4  cardView = recognizer.\cf11 view\cf4 ! 
+\f1\b \cf5 as
+\f0\b0 \cf4 ! \cf15 CardView\cf4 \
+            \cf9 print\cf4 (cardView.\cf10 modelCard\cf4 !)\
+        \}\
+    \}\
+    \
+    
+\f1\b \cf5 @IBAction
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 test\cf4 (
+\f1\b \cf5 _
+\f0\b0 \cf4  sender: \cf7 UIButton\cf4 ) \{\
+        \cf2 // not doing anything right now\cf4 \
+    \}\
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 game\cf4 : \cf16 SetGame\cf4 !\
+    \
+    \cf2 // cards are identified by indices in the game.cards array\cf4 \
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 cheatMode\cf4  = 
+\f1\b \cf5 false
+\f0\b0 \cf4 \
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 startNewGame\cf4 () \{\
+        \cf10 game\cf4  = \cf16 SetGame\cf4 ()\
+        \cf10 cheatMode\cf4  = 
+\f1\b \cf5 false
+\f0\b0 \cf4 \
+        \cf13 updateViewFromModel\cf4 ()\
+    \}\
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 updateViewFromModel\cf4 () \{\
+        
+\f1\b \cf5 guard
+\f0\b0 \cf4  \cf10 game\cf4 .\cf13 setAvailable\cf4 () \cf9 ||\cf4  \cf10 game\cf4 .\cf10 cardsInDeck\cf4  \cf9 >=\cf4  \cf12 3\cf4  
+\f1\b \cf5 else
+\f0\b0 \cf4  \{\
+            \cf10 multiplierLabel\cf4 .\cf11 text\cf4  = \cf14 "Game over!"\cf4 \
+            
+\f1\b \cf5 return
+\f0\b0 \cf4 \
+        \}\
+        \cf10 cheatButton\cf4 .\cf11 isEnabled\cf4  = 
+\f1\b \cf5 true
+\f0\b0 \cf4 \
+        \cf2 // game.availableCardIndices.count will always be less than 25\cf4 \
+        \cf2 // The actual index values within, when accessed, can be 0-80, accounting for every unique card\cf4 \
+        \cf10 deckCountLabel\cf4 .\cf11 text\cf4  = \cf14 "Deck: \cf4 \\(\cf10 game\cf4 .\cf10 cardsInDeck\cf4 )\cf14 "\cf4 \
+        \cf10 multiplierLabel\cf4 .\cf11 text\cf4  = \cf14 "Multiplier: \cf4 \\(\cf10 game\cf4 .\cf10 multiplier\cf4 )\cf14 x"\cf4 \
+        
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf10 cheatMode\cf4  \{ \cf10 multiplierLabel\cf4 .\cf11 text\cf4  = \cf14 "Cheat Mode"\cf4  \}\
+        \cf10 scoreLabel\cf4 .\cf11 text\cf4  = \cf10 cheatMode\cf4  ? \cf14 "Score: N/A"\cf4  : \cf14 "Score: \cf4 \\(\cf10 game\cf4 .\cf10 score\cf4 )\cf14 "\cf4 \
+        \
+        \cf10 allCardsView\cf4 .\cf10 modelCards\cf4  = \cf10 game\cf4 .\cf10 availableCards\cf4 \
+        \cf10 allCardsView\cf4 .\cf9 layoutIfNeeded\cf4 ()\
+        \cf9 print\cf4 (\cf14 "taps about to be added for \cf4 \\(\cf10 allCardsView\cf4 .\cf11 subviews\cf4 .\cf11 count\cf4 )\cf14  subviews"\cf4 )\
+        
+\f1\b \cf5 for
+\f0\b0 \cf4  subview 
+\f1\b \cf5 in
+\f0\b0 \cf4  \cf10 allCardsView\cf4 .\cf11 subviews\cf4  \{\
+            
+\f1\b \cf5 let
+\f0\b0 \cf4  tap = \cf7 UITapGestureRecognizer\cf4 (target: 
+\f1\b \cf5 self
+\f0\b0 \cf4 , action: 
+\f1\b \cf5 #selector
+\f0\b0 \cf4 (\cf13 tapCard(byHandlingGestureRecognizedBy:)\cf4 ))\
+            subview.\cf9 addGestureRecognizer\cf4 (tap)\
+        \}\
+        \cf9 print\cf4 (\cf14 "finished adding taps for \cf4 \\(\cf10 allCardsView\cf4 .\cf11 subviews\cf4 .\cf11 count\cf4 )\cf14  subviews"\cf4 )\
+\cf2 //        for i in 0..<game.availableCardIndices.count \{\cf4 \
+\cf2 //            // -1 indicates card removed and should be invisible\cf4 \
+\cf2 //            if game.availableCardIndices[i] == -1 \{\cf4 \
+\cf2 //                cardButtons[i].alpha = 0.0\cf4 \
+\cf2 //                continue\cf4 \
+\cf2 //            \}\cf4 \
+\cf2 //            cardButtons[i].isEnabled = true\cf4 \
+\cf2 //            cardButtons[i].setAttributedTitle(allViewCards[game.availableCardIndices[i]], for: .normal)\cf4 \
+\cf2 //            cardButtons[i].alpha = 1.0\cf4 \
+\cf2 //            if game.selectedCardIndices.contains(game.availableCardIndices[i]) \{\cf4 \
+\cf2 //                cardButtons[i].layer.borderWidth = 3.0\cf4 \
+\cf2 //                cardButtons[i].layer.borderColor = borderColor().cgColor\cf4 \
+\cf2 //                // disable button if currently involved in a selected set\cf4 \
+\cf2 //                if game.selectedCardsMakeASet \{ cardButtons[i].isEnabled = false \}\cf4 \
+\cf2 //            \} else \{\cf4 \
+\cf2 //                cardButtons[i].layer.borderWidth = 0.0\cf4 \
+\cf2 //            \}\cf4 \
+\cf2 //        \}\cf4 \
+        \cf2 // manage deal button and cheat button based on game state\cf4 \
+        
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf9 !\cf10 game\cf4 .\cf13 setAvailable\cf4 () \{\
+            \cf10 dealButton\cf4 .\cf9 setTitle\cf4 (\cf14 "No Sets. Free Draw!"\cf4 , for: .\cf11 normal\cf4 )\
+            \cf10 cheatButton\cf4 .\cf11 isEnabled\cf4  = 
+\f1\b \cf5 false
+\f0\b0 \cf4 \
+        \} 
+\f1\b \cf5 else
+\f0\b0 \cf4  
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf10 game\cf4 .\cf10 selectedCardsMakeASet\cf4  \{\
+            \cf10 dealButton\cf4 .\cf9 setTitle\cf4 (\cf14 "Replace Matched Set"\cf4 , for: .\cf11 normal\cf4 )\
+        \} 
+\f1\b \cf5 else
+\f0\b0 \cf4  \{\
+            \cf10 dealButton\cf4 .\cf9 setTitle\cf4 (\cf14 "Deal 3 & Reduce Multiplier"\cf4 , for: .\cf11 normal\cf4 )\
+        \}\
+        
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf10 game\cf4 .\cf10 selectedCardsMakeASet\cf4  \cf9 ||\cf4  \cf10 game\cf4 .\cf10 cardsInDeck\cf4  \cf9 >=\cf4  \cf12 3\cf4  \{\
+            \cf13 enableDealButton\cf4 ()\
+        \} 
+\f1\b \cf5 else
+\f0\b0 \cf4  \{ \cf13 disableDealButton\cf4 () \}\
+        \cf2 // if no cards left in deck, disable deal button\cf4 \
+        
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf10 game\cf4 .\cf10 cardsInDeck\cf4  \cf9 <\cf4  \cf12 3\cf4  \{ \cf13 disableDealButton\cf4 () \}\
+        \cf9 print\cf4 (\cf14 "end of updateViewFromModel"\cf4 )\
+    \}\
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 disableDealButton\cf4 () \{\
+        \cf10 dealButton\cf4 .\cf11 isEnabled\cf4  = 
+\f1\b \cf5 false
+\f0\b0 \cf4 \
+        \cf10 dealButton\cf4 .\cf11 alpha\cf4  = \cf12 0.3\cf4 \
+        \cf10 dealButton\cf4 .\cf9 setTitle\cf4 (\cf14 "Unable to Draw"\cf4 , for: .\cf11 normal\cf4 )\
+    \}\
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 enableDealButton\cf4 () \{\
+        \cf10 dealButton\cf4 .\cf11 isEnabled\cf4  = 
+\f1\b \cf5 true
+\f0\b0 \cf4 \
+        \cf10 dealButton\cf4 .\cf11 alpha\cf4  = \cf12 1.0\cf4 \
+    \}\
+    \
+    \cf2 // return card border color dependent on selected cards\cf4 \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 borderColor\cf4 () -> \cf7 UIColor\cf4  \{\
+        \cf2 // if three cards are selected, border should be green or red depending on match\cf4 \
+        
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf10 game\cf4 .\cf10 selectedCardIndices\cf4 .\cf11 count\cf4  \cf9 ==\cf4  \cf12 3\cf4  \{\
+            
+\f1\b \cf5 if
+\f0\b0 \cf4  \cf10 game\cf4 .\cf10 selectedCardsMakeASet\cf4  \{\
+                
+\f1\b \cf5 return
+\f0\b0 \cf4  \cf7 UIColor\cf4 .\cf11 green\cf4 \
+            \} 
+\f1\b \cf5 else
+\f0\b0 \cf4  \{\
+                
+\f1\b \cf5 return
+\f0\b0 \cf4  \cf7 UIColor\cf4 .\cf11 red\cf4 \
+            \}\
+        \} 
+\f1\b \cf5 else
+\f0\b0 \cf4  \{ \cf2 // border should be white if less than 3 cards are selected\cf4 \
+            
+\f1\b \cf5 return
+\f0\b0 \cf4  \cf7 UIColor\cf4 .\cf11 white\cf4 \
+        \}\
+    \}\
+    \
+    
+\f1\b \cf5 @IBAction
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 touchCard\cf4 (
+\f1\b \cf5 _
+\f0\b0 \cf4  sender: \cf7 UIButton\cf4 ) \{\
+\cf2 //        let title = sender.attributedTitle(for: .normal)!\cf4 \
+\cf2 //        let index = allViewCards.firstIndex(of: title)!\cf4 \
+\cf2 //        game.select(index: index)\cf4 \
+        \cf13 updateViewFromModel\cf4 ()\
+    \}\
+    \
+    
+\f1\b \cf5 @IBAction
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 pressDealButton\cf4 (
+\f1\b \cf5 _
+\f0\b0 \cf4  sender: \cf7 UIButton\cf4 ) \{\
+        \cf10 game\cf4 .\cf13 dealThreeCards\cf4 ()\
+        \cf13 updateViewFromModel\cf4 ()\
+    \}\
+    \
+    
+\f1\b \cf5 @IBAction
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 touchNewGameButton\cf4 (
+\f1\b \cf5 _
+\f0\b0 \cf4  sender: \cf7 UIButton\cf4 ) \{\
+        \cf13 startNewGame\cf4 ()\
+    \}\
+    
+\f1\b \cf5 @IBAction
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 touchCheatButton\cf4 (
+\f1\b \cf5 _
+\f0\b0 \cf4  sender: \cf7 UIButton\cf4 ) \{\
+        \cf10 game\cf4 .\cf13 cheat\cf4 ()\
+        \cf10 cheatMode\cf4  = 
+\f1\b \cf5 true
+\f0\b0 \cf4 \
+        \cf13 updateViewFromModel\cf4 ()\
+    \}\
+    \
+    \
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 testButton\cf4 : \cf7 UIButton\cf4 !\
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 cheatButton\cf4 : \cf7 UIButton\cf4 !\
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 multiplierLabel\cf4 : \cf7 UILabel\cf4 !\
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 scoreLabel\cf4 : \cf7 UILabel\cf4 !\
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 deckCountLabel\cf4 : \cf7 UILabel\cf4 !\
+    
+\f1\b \cf5 @IBOutlet
+\f0\b0 \cf4  
+\f1\b \cf5 weak
+\f0\b0 \cf4  
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 dealButton\cf4 : \cf7 UIButton\cf4 !\
+\cf2 //    @IBOutlet var cardButtons: [UIButton]!\cf4 \
+\}\
+\
+\cf2 //\cf4 \
+\cf2 //  AllCardsView.swift\cf4 \
+\cf2 //  Graphical Set\cf4 \
+\cf2 //\cf4 \
+\cf2 //  Created by Sebastian Malm on 1/29/20.\cf4 \
+\cf2 //  Copyright \'a9 2020 SebastianMalm. All rights reserved.\cf4 \
+\cf2 //\cf4 \
+\
+
+\f1\b \cf5 import
+\f0\b0 \cf4  UIKit\
+\
+\cf2 //@IBDesignable\cf4 \
+
+\f1\b \cf5 class
+\f0\b0 \cf4  \cf6 AllCardsView\cf4 : \cf7 UIView\cf4  \{\
+    \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 struct
+\f0\b0 \cf4  \cf6 Constants\cf4  \{\
+        
+\f1\b \cf5 static
+\f0\b0 \cf4  
+\f1\b \cf5 let
+\f0\b0 \cf4  \cf8 cardAspectRatio\cf4 : \cf17 \cb3 CGFloat\cf4 \cb3  = \cf12 0.6\cf4 \
+    \}\
+    \
+    
+\f1\b \cf5 var
+\f0\b0 \cf4  \cf8 modelCards\cf4  = [\cf16 ModelCard\cf4 ]() \{ 
+\f1\b \cf5 didSet
+\f0\b0 \cf4  \{\
+        \cf9 print\cf4 (\cf14 "setNeedsLayout about to be called"\cf4 )\
+        \cf9 setNeedsLayout\cf4 ()\
+        \cf9 print\cf4 (\cf14 "setNeedsLayout was called"\cf4 )\
+        \}\}\
+    \
+    
+\f1\b \cf5 override
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 layoutSubviews\cf4 () \{\
+        
+\f1\b \cf5 super
+\f0\b0 \cf4 .\cf9 layoutSubviews\cf4 ()\
+        \cf9 print\cf4 (\cf14 "layoutSubviews was called; there are \cf4 \\(\cf10 modelCards\cf4 .\cf11 count\cf4 )\cf14  cards to draw"\cf4 )\
+        
+\f1\b \cf5 for
+\f0\b0 \cf4  subview 
+\f1\b \cf5 in
+\f0\b0 \cf4  \cf11 subviews\cf4  \{\
+            subview.\cf9 removeFromSuperview\cf4 ()\
+        \}\
+        \cf13 generateViewCards\cf4 ()\
+    \}\
+ \
+    
+\f1\b \cf5 private
+\f0\b0 \cf4  
+\f1\b \cf5 func
+\f0\b0 \cf4  \cf8 generateViewCards\cf4 () \{\
+        
+\f1\b \cf5 var
+\f0\b0 \cf4  grid = \cf16 Grid\cf4 (layout: .\cf10 aspectRatio\cf4 (\cf16 Constants\cf4 .\cf10 cardAspectRatio\cf4 ), frame: \cf11 bounds\cf4 )\
+        grid.\cf10 cellCount\cf4  = \cf10 modelCards\cf4 .\cf11 count\cf4 \
+        
+\f1\b \cf5 var
+\f0\b0 \cf4  gridTracker = \cf12 0\cf4 \
+        
+\f1\b \cf5 for
+\f0\b0 \cf4  modelCard 
+\f1\b \cf5 in
+\f0\b0 \cf4  \cf10 modelCards\cf4  \{\
+            
+\f1\b \cf5 let
+\f0\b0 \cf4  card = \cf15 CardView\cf4 (fromModelCard: modelCard, withFrame: grid[gridTracker] ?? \cf17 \cb3 CGRect\cf4 \cb3 .\cf11 zero\cf4 )\
+            card.\cf11 layer\cf4 .\cf11 borderWidth\cf4  = \cf12 3.0\cf4 \
+            card.\cf11 layer\cf4 .\cf11 borderColor\cf4  =  colorLiteral(red: 0.005954995286, green: 0.08856820315, blue: 0.306032896, alpha: 1)\
+            card.\cf11 contentMode\cf4  = .\cf11 redraw\cf4 \
+            \cf9 addSubview\cf4 (card)\
+            gridTracker \cf9 +=\cf4  \cf12 1\cf4 \
+        \}\
+    \}\
+\}\
+\
+\cf2 // GENERATE VIEW CARDS BACKUP\cf4 \
+\
+\cf2 //private func generateViewCards(fromModelCardsInRows rows: [[ModelCard]]) \{\cf4 \
+\cf2 //    var grid = Grid(layout: .aspectRatio(0.5), frame: bounds)\cf4 \
+\cf2 //    grid.cellCount = 81\cf4 \
+\cf2 //    var gridTracker = 0\cf4 \
+\cf2 //    var rowTracker: CGFloat = 0.0\cf4 \
+\cf2 //    let cardHeight = bounds.height / CGFloat(rows.count)\cf4 \
+\cf2 //    for row in rows \{\cf4 \
+\cf2 //        var columnTracker: CGFloat = 0.0\cf4 \
+\cf2 //        let cardWidth = bounds.width / CGFloat(row.count)\cf4 \
+\cf2 //        for modelCard in row \{\cf4 \
+\cf2 //            let card = CardView(fromModelCard: modelCard, withFrame: CGRect(origin: CGPoint(x: bounds.minX + columnTracker, y: bounds.minY + rowTracker), size: CGSize(width: cardWidth, height: cardHeight)))\cf4 \
+\cf2 //            card.layer.borderWidth = 3.0\cf4 \
+\cf2 //            card.layer.borderColor = UIColor.black.cgColor\cf4 \
+\cf2 //            card.contentMode = .redraw\cf4 \
+\cf2 //            addSubview(card)\cf4 \
+\cf2 //            columnTracker += cardWidth\cf4 \
+\cf2 //        \}\cf4 \
+\cf2 //        rowTracker += cardHeight\cf4 \
+\cf2 //    \}\cf4 \
+\cf2 //\}\cf4 \
+}

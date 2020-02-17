@@ -1,0 +1,14 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww13020\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 UIGestureRecognizer Notes:\
+\
+Controller needs to add a gesture recognizer to a UIView (asking the UIView to \'93recognize\'94 that gesture). (Sometimes a UIView will do this itself if the gesture is integral to its existence like a ScrollView. my cards are NOT like this and the controller should add the gesture recognizer to the cards.\
+\
+A method needs to be provided to \'93handle\'94 that gesture; this could be provided by the UIView or the Controller. I\'92m assuming the controller should handle it in the case of tapping cards.\
+\
+For the swipe down to deal 3 gesture, I\'92ll add a didSet to the allViewCards view I assume. Same with the rotation gesture. Either that or add these to the superview itself somehow. But I assume I might not be able to use an outlet in this case?}
