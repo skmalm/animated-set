@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		9E98968123E9E21A00B02D59 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9E9FA1D823E486B0008FEF1C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
-		9EE5A53A23E1F55F006E7916 /* Graphical Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Graphical Set.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE5A53A23E1F55F006E7916 /* Animated Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animated Set.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE5A53D23E1F55F006E7916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EE5A53F23E1F55F006E7916 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9EE5A54123E1F55F006E7916 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		9EE5A53B23E1F55F006E7916 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9EE5A53A23E1F55F006E7916 /* Graphical Set.app */,
+				9EE5A53A23E1F55F006E7916 /* Animated Set.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,9 +99,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9EE5A53923E1F55F006E7916 /* Graphical Set */ = {
+		9EE5A53923E1F55F006E7916 /* Animated Set */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9EE5A54E23E1F562006E7916 /* Build configuration list for PBXNativeTarget "Graphical Set" */;
+			buildConfigurationList = 9EE5A54E23E1F562006E7916 /* Build configuration list for PBXNativeTarget "Animated Set" */;
 			buildPhases = (
 				9EE5A53623E1F55F006E7916 /* Sources */,
 				9EE5A53723E1F55F006E7916 /* Frameworks */,
@@ -111,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = "Graphical Set";
+			name = "Animated Set";
 			productName = "Graphical Set";
-			productReference = 9EE5A53A23E1F55F006E7916 /* Graphical Set.app */;
+			productReference = 9EE5A53A23E1F55F006E7916 /* Animated Set.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -131,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9EE5A53523E1F55F006E7916 /* Build configuration list for PBXProject "Graphical Set" */;
+			buildConfigurationList = 9EE5A53523E1F55F006E7916 /* Build configuration list for PBXProject "Animated Set" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -144,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9EE5A53923E1F55F006E7916 /* Graphical Set */,
+				9EE5A53923E1F55F006E7916 /* Animated Set */,
 			);
 		};
 /* End PBXProject section */
@@ -328,7 +328,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SebastianMalm.Graphical-Set";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Animated Set";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -346,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SebastianMalm.Graphical-Set";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Animated Set";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,7 +355,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9EE5A53523E1F55F006E7916 /* Build configuration list for PBXProject "Graphical Set" */ = {
+		9EE5A53523E1F55F006E7916 /* Build configuration list for PBXProject "Animated Set" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9EE5A54C23E1F562006E7916 /* Debug */,
@@ -364,7 +364,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9EE5A54E23E1F562006E7916 /* Build configuration list for PBXNativeTarget "Graphical Set" */ = {
+		9EE5A54E23E1F562006E7916 /* Build configuration list for PBXNativeTarget "Animated Set" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9EE5A54F23E1F562006E7916 /* Debug */,
