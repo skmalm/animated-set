@@ -80,6 +80,7 @@
 				9E9FA1D823E486B0008FEF1C /* Grid.swift */,
 				9EE5A54323E1F55F006E7916 /* Main.storyboard */,
 				9E98968123E9E21A00B02D59 /* Styles.swift */,
+				9EE5A54823E1F562006E7916 /* LaunchScreen.storyboard */,
 				9EE5A54623E1F562006E7916 /* Assets.xcassets */,
 				9EE5A54B23E1F562006E7916 /* Info.plist */,
 			);
@@ -91,7 +92,6 @@
 			children = (
 				9EE5A53D23E1F55F006E7916 /* AppDelegate.swift */,
 				9EE5A53F23E1F55F006E7916 /* SceneDelegate.swift */,
-				9EE5A54823E1F562006E7916 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TK388M95MH;
-				INFOPLIST_FILE = "Graphical Set/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Animated Set/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -340,7 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TK388M95MH;
-				INFOPLIST_FILE = "Graphical Set/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Animated Set/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
