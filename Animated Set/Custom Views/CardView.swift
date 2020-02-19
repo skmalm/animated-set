@@ -16,28 +16,35 @@ class CardView: UIView {
         // generate and draw card background
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: Constants.cornerRadius)
         roundedRect.addClip()
-        UIColor.white.setFill()
+        if isFaceUp {
+            UIColor.white.setFill()
+        } else {
+            UIColor.brown.setFill()
+        }
         roundedRect.fill()
     }
     
+    var isFaceUp = true
     var modelCard: ModelCard?
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        for subview in subviews {
-            subview.removeFromSuperview()
-        }
-        guard modelCard != nil else { return }
-        switch modelCard!.quantity {
-        case .one:
-            generateShape(atYPosition: yPositionFromRatio(Constants.yRatioFor1Shape))
-        case .two:
-            for ratio in Constants.yRatiosFor2Shapes {
-                generateShape(atYPosition: yPositionFromRatio(ratio))
+        if isFaceUp {
+            for subview in subviews {
+                subview.removeFromSuperview()
             }
-        case .three:
-            for ratio in Constants.yRatiosFor3Shapes {
-                generateShape(atYPosition: yPositionFromRatio(ratio))
+            guard modelCard != nil else { return }
+            switch modelCard!.quantity {
+            case .one:
+                generateShape(atYPosition: yPositionFromRatio(Constants.yRatioFor1Shape))
+            case .two:
+                for ratio in Constants.yRatiosFor2Shapes {
+                    generateShape(atYPosition: yPositionFromRatio(ratio))
+                }
+            case .three:
+                for ratio in Constants.yRatiosFor3Shapes {
+                    generateShape(atYPosition: yPositionFromRatio(ratio))
+                }
             }
         }
     }

@@ -10,6 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBAction func touchFlipButton(_ sender: UIButton) {
+        for subview in cardGridView.subviews {
+            guard let cardView = subview as? CardView else { return }
+            cardView.layer.borderColor = UIColor.brown.cgColor
+            if cardView.isFaceUp {
+                cardView.isFaceUp = false
+                UIView.transition(
+                    with: cardView,
+                    duration: 0.5,
+                    options: [.transitionFlipFromLeft],
+                    animations: { cardView.layer.borderWidth = 100 })
+            } else {
+                cardView.isFaceUp = true
+                UIView.transition(
+                    with: cardView,
+                    duration: 0.5,
+                    options: [.transitionFlipFromRight],
+                    animations: { cardView.layer.borderWidth = 0 })
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set basic programmatic styling then start a new game
