@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,39 +11,78 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Graphical_Set" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Animated_Set" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fX6-dd-45Q" userLabel="Top Label &amp; Buttons">
-                                <rect key="frame" x="20" y="44.000000000000007" width="374" height="75.666666666666686"/>
+                                <rect key="frame" x="20" y="44" width="374" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqk-bq-uuy">
-                                        <rect key="frame" x="0.0" y="19.333333333333336" width="119.33333333333333" height="37"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
-                                        <state key="normal" title="New Game"/>
-                                        <connections>
-                                            <action selector="touchNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FD6-EC-jwJ"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XoX-iy-eMc" userLabel="New Game &amp; Cheat Stack">
+                                        <rect key="frame" x="0.0" y="18" width="119.5" height="74"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqk-bq-uuy">
+                                                <rect key="frame" x="18.5" y="0.0" width="82" height="37"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
+                                                <state key="normal" title="New Game"/>
+                                                <connections>
+                                                    <action selector="touchNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FD6-EC-jwJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERw-wY-TIa">
+                                                <rect key="frame" x="37" y="37" width="45" height="37"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
+                                                <state key="normal" title="Cheat"/>
+                                                <connections>
+                                                    <action selector="touchCheatButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IzP-96-llg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="wTk-DV-m7d" userLabel="Top Label">
-                                        <rect key="frame" x="127.33333333333334" y="0.0" width="119.33333333333334" height="75.666666666666671"/>
+                                        <rect key="frame" x="127.5" y="17" width="119" height="76"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERw-wY-TIa">
-                                        <rect key="frame" x="254.66666666666671" y="19.333333333333336" width="119.33333333333334" height="37"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gV-fY-CIJ" userLabel="Deck &amp; Discard Container">
+                                        <rect key="frame" x="254.5" y="0.0" width="119.5" height="110"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="soM-jr-LJ1" userLabel="Deck &amp; Discard Stack">
+                                                <rect key="frame" x="0.0" y="16" width="119.5" height="78"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nHu-tl-CTY" customClass="CardView" customModule="Animated_Set" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="78"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="nHu-tl-CTY" secondAttribute="height" multiplier="7:10" id="koJ-px-yjA"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0ju-1s-cCd" customClass="CardView" customModule="Animated_Set" customModuleProvider="target">
+                                                        <rect key="frame" x="65" y="0.0" width="54.5" height="78"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="0ju-1s-cCd" secondAttribute="height" multiplier="7:10" id="5eZ-kf-ZmL"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="0ju-1s-cCd" firstAttribute="width" secondItem="0ju-1s-cCd" secondAttribute="height" multiplier="7:10" id="btL-Qc-sOL"/>
+                                                </constraints>
+                                                <variation key="heightClass=compact" spacing="121"/>
+                                            </stackView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
-                                        <state key="normal" title="Cheat"/>
-                                        <connections>
-                                            <action selector="touchCheatButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IzP-96-llg"/>
-                                        </connections>
-                                    </button>
+                                        <constraints>
+                                            <constraint firstItem="soM-jr-LJ1" firstAttribute="leading" secondItem="0gV-fY-CIJ" secondAttribute="leading" id="REG-Km-rl5"/>
+                                            <constraint firstAttribute="trailing" secondItem="soM-jr-LJ1" secondAttribute="trailing" id="aHq-Gg-bIO"/>
+                                            <constraint firstItem="soM-jr-LJ1" firstAttribute="centerY" secondItem="0gV-fY-CIJ" secondAttribute="centerY" id="gYP-Xi-UGB"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivx-f4-TaQ" userLabel="Deal Button">
@@ -58,30 +97,30 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qzv-Pr-cNz" userLabel="Deck Count &amp; Score Labels">
-                                <rect key="frame" x="20" y="778.66666666666663" width="374" height="24.333333333333371"/>
+                                <rect key="frame" x="20" y="778.5" width="374" height="24.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deck: 81" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj2-HZ-Ggb" userLabel="Deck Count Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="24.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="119.5" height="24.5"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiplier: 5x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-ez-6Vt" userLabel="Multiplier Label">
-                                        <rect key="frame" x="127.33333333333334" y="0.0" width="119.33333333333334" height="24.333333333333332"/>
+                                        <rect key="frame" x="127.5" y="0.0" width="119" height="24.5"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi4-n6-Pby" userLabel="Score Label">
-                                        <rect key="frame" x="254.66666666666671" y="0.0" width="119.33333333333334" height="24.333333333333332"/>
+                                        <rect key="frame" x="254.5" y="0.0" width="119.5" height="24.5"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-VK-f9J" customClass="CardGridView" customModule="Graphical_Set" customModuleProvider="target">
-                                <rect key="frame" x="20" y="119.66666666666669" width="374" height="649"/>
+                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-VK-f9J" customClass="CardGridView" customModule="Animated_Set" customModuleProvider="target">
+                                <rect key="frame" x="20" y="164" width="374" height="604.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -92,7 +131,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fX6-dd-45Q" secondAttribute="trailing" constant="20" id="E6j-tp-5sM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ivx-f4-TaQ" secondAttribute="trailing" constant="20" id="Q3g-RG-jtf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qHS-VK-f9J" secondAttribute="trailing" constant="20" id="Rsl-LY-RDg"/>
-                            <constraint firstItem="qHS-VK-f9J" firstAttribute="top" secondItem="fX6-dd-45Q" secondAttribute="bottom" id="TCJ-ZK-lOu"/>
+                            <constraint firstItem="qHS-VK-f9J" firstAttribute="top" secondItem="fX6-dd-45Q" secondAttribute="bottom" constant="10" id="TCJ-ZK-lOu"/>
                             <constraint firstItem="qHS-VK-f9J" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YGr-p2-2E6"/>
                             <constraint firstItem="ivx-f4-TaQ" firstAttribute="top" secondItem="qzv-Pr-cNz" secondAttribute="bottom" constant="10" id="bPC-UQ-LWM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qzv-Pr-cNz" secondAttribute="trailing" constant="20" id="eXj-KX-aMl"/>
@@ -107,7 +146,9 @@
                         <outlet property="cardGridView" destination="qHS-VK-f9J" id="10c-B4-AvM"/>
                         <outlet property="cheatButton" destination="ERw-wY-TIa" id="ZOT-Vc-fLH"/>
                         <outlet property="dealButton" destination="ivx-f4-TaQ" id="cyV-H1-aBu"/>
+                        <outlet property="deckCardView" destination="nHu-tl-CTY" id="iVS-l1-N68"/>
                         <outlet property="deckCountLabel" destination="cj2-HZ-Ggb" id="6bj-83-yTD"/>
+                        <outlet property="discardCardView" destination="0ju-1s-cCd" id="40W-Nm-Fy6"/>
                         <outlet property="multiplierLabel" destination="U3S-ez-6Vt" id="2KQ-DM-ANA"/>
                         <outlet property="scoreLabel" destination="hi4-n6-Pby" id="HAJ-uP-1O9"/>
                     </connections>

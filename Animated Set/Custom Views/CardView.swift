@@ -20,11 +20,15 @@ class CardView: UIView {
         roundedRect.fill()
     }
     
-    var modelCard: ModelCard!
+    var modelCard: ModelCard?
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        switch modelCard.quantity {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+        guard modelCard != nil else { return }
+        switch modelCard!.quantity {
         case .one:
             generateShape(atYPosition: yPositionFromRatio(Constants.yRatioFor1Shape))
         case .two:
@@ -39,7 +43,7 @@ class CardView: UIView {
     }
     
     private func generateShape(atYPosition yPosition: CGFloat) {
-        let shape = ShapeView(fromModelCard: modelCard, withFrame: CGRect(origin: CGPoint(x: Constants.shapeLeftBoundaryRatio * bounds.width, y: yPosition), size: CGSize(width: Constants.shapeWidthRatio * bounds.width, height: Constants.shapeHeightRatio * bounds.height)))
+        let shape = ShapeView(fromModelCard: modelCard!, withFrame: CGRect(origin: CGPoint(x: Constants.shapeLeftBoundaryRatio * bounds.width, y: yPosition), size: CGSize(width: Constants.shapeWidthRatio * bounds.width, height: Constants.shapeHeightRatio * bounds.height)))
         shape.isOpaque = false
         shape.backgroundColor = UIColor.clear
         shape.contentMode = .redraw

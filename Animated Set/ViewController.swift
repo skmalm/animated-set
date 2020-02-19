@@ -14,6 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Set basic programmatic styling then start a new game
         dealButton.layer.cornerRadius = Constants.dealButtonCornerRadius
+        // TEMP
+        deckCardView.modelCard = ModelCard(shape: .shape1, quantity: .one, color: .color1, shading: .shading1)
+        deckCardView.contentMode = .redraw
+        discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2)
+        discardCardView.contentMode = .redraw
         startNewGame()
     }
 
@@ -137,6 +142,8 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
+    @IBOutlet weak var discardCardView: CardView!
+    @IBOutlet weak var deckCardView: CardView!
     @IBOutlet private weak var cheatButton: UIButton!
     @IBOutlet private weak var multiplierLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
