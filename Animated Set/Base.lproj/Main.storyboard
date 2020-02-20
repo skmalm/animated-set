@@ -36,9 +36,6 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                                 <state key="normal" title="Flip"/>
-                                                <connections>
-                                                    <action selector="touchFlipButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nMj-Zp-WR2"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERw-wY-TIa">
                                                 <rect key="frame" x="37" y="74" width="45" height="37"/>

@@ -9,29 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    // TEMP method, will remove button
-    @IBAction func touchFlipButton(_ sender: UIButton) {
-        for subview in cardGridView.subviews {
-            guard let cardView = subview as? CardView else { return }
-            cardView.layer.borderColor = UIColor.brown.cgColor
-            if cardView.isFaceUp {
-                cardView.isFaceUp = false
-                UIView.transition(
-                    with: cardView,
-                    duration: 0.5,
-                    options: [.transitionFlipFromLeft],
-                    animations: { cardView.layer.borderWidth = 100 })
-            } else {
-                cardView.isFaceUp = true
-                UIView.transition(
-                    with: cardView,
-                    duration: 0.5,
-                    options: [.transitionFlipFromRight],
-                    animations: { cardView.layer.borderWidth = 0 })
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +75,7 @@ class ViewController: UIViewController {
         } else { disableDealButton() }
         // if no cards left in deck, disable deal button
         if game.cardsInDeck.count < 3 { disableDealButton() }
+        game.flipUpAvailableCards()
     }
     
     private func disableDealButton() {
@@ -142,12 +120,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var discardCardView: CardView! { didSet {
         // TEMP, will find better way of managing what cards are shown in deck and discard
-        discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2)
+        discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2, isFaceUp: true)
         discardCardView.contentMode = .redraw
         }}
     @IBOutlet weak var deckCardView: CardView! { didSet {
         // TEMP, will find better way of managing what cards are shown in deck and discard
-        deckCardView.modelCard = ModelCard(shape: .shape1, quantity: .one, color: .color1, shading: .shading1)
+        deckCardView.modelCard = ModelCard(shape: .shape1, quantity: .one, color: .color1, shading: .shading1, isFaceUp: true)
         deckCardView.contentMode = .redraw
         }}
     @IBOutlet private weak var cheatButton: UIButton!

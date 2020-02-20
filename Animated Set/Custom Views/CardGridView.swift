@@ -38,12 +38,21 @@ class CardGridView: UIView {
         grid.cellCount = modelCards.count
         var gridTracker = 0
         for modelCard in modelCards {
-            let card = CardView(fromModelCard: modelCard, withFrame: grid[gridTracker]?.inset(by: insetSize) ?? CGRect.zero)
+            let card = CardView(fromModelCard: modelCard, withFrame: CGRect(origin: bounds.origin, size: grid.cellSize))
             if selectedCards.contains(modelCard) {
                 card.layer.borderWidth = Constants.cellInsetValue
                 card.layer.borderColor = borderColor
             }
             card.contentMode = .redraw
+            if !modelCard.isFaceUp { // if facedown, initial draw: fly card in
+                UIViewPropertyAnimator.runningPropertyAnimator(
+                    withDuration: Constants.flyInDuration,
+                    delay: 0,
+                    options: [],
+                    animations: { card.frame = grid[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero })
+            } else { // else put it in grid position without having it fly in
+                card.frame = grid[gridTracker]?.inset(by: insetSize) ?? CGRect.zero
+            }
             addSubview(card)
             gridTracker += 1
         }
@@ -61,6 +70,7 @@ extension CardGridView {
         static let cardAspectRatio: CGFloat = 0.57
         static let cellInsetValue: CGFloat = 4.0
         static let selectionBorderWidth: CGFloat = 5.0
+        static let flyInDuration = 0.5
     }
     private var insetSize: CGSize {
         return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)

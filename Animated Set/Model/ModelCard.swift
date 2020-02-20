@@ -11,13 +11,14 @@ import Foundation
 struct ModelCard: Hashable, CustomStringConvertible {
 
     var description: String {
-        return "[\(shape), \(quantity), \(color), \(shading)]"
+        return "[\(shape), \(quantity), \(color), \(shading), isFaceUp: \(isFaceUp)]"
     }
     
     let shape: Shape
     let quantity: Quantity
     let color: Color
     let shading: Shading
+    var isFaceUp: Bool
     
     enum Shape: CaseIterable {
         case shape1
