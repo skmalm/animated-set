@@ -33,29 +33,34 @@ class CardGridView: UIView {
         }
     }
  
+    var previousGrid: Grid?
+    
     private func generateViewCards() {
         var grid = Grid(layout: .aspectRatio(Constants.cardAspectRatio), frame: bounds)
         grid.cellCount = modelCards.count
         var gridTracker = 0
         for modelCard in modelCards {
-            let card = CardView(fromModelCard: modelCard, withFrame: CGRect(origin: bounds.origin, size: grid.cellSize))
-            if selectedCards.contains(modelCard) {
-                card.layer.borderWidth = Constants.cellInsetValue
-                card.layer.borderColor = borderColor
+            var cardFrame = CGRect(origin: bounds.origin, size: grid.cellSize)
+            if previousGrid != nil {
+                cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero
             }
+            let card = CardView(fromModelCard: modelCard, withFrame: cardFrame)
             card.contentMode = .redraw
-            if !modelCard.isFaceUp { // if facedown, initial draw: fly card in
-                UIViewPropertyAnimator.runningPropertyAnimator(
-                    withDuration: Constants.flyInDuration,
-                    delay: 0,
-                    options: [],
-                    animations: { card.frame = grid[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero })
-            } else { // else put it in grid position without having it fly in
-                card.frame = grid[gridTracker]?.inset(by: insetSize) ?? CGRect.zero
-            }
             addSubview(card)
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: Constants.flyInDuration,
+                delay: 0,
+                options: [],
+                animations: { card.frame = grid[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero },
+                completion: { finished in
+                    if self.selectedCards.contains(modelCard) {
+                        card.layer.borderWidth = Constants.cellInsetValue
+                        card.layer.borderColor = self.borderColor
+                    }
+            })
             gridTracker += 1
         }
+        previousGrid = grid
     }
 }
 
