@@ -26,7 +26,6 @@ class ViewController: UIViewController {
             // cardviews themselves have a modelCard set on initialization
             let tappedModelCard = tappedViewCard.modelCard!
             game.select(tappedModelCard)
-            print("a card was tapped: \(tappedModelCard)")
             updateViewFromModel()
         }
     }
@@ -77,6 +76,7 @@ class ViewController: UIViewController {
         // if no cards left in deck, disable deal button
         if game.cardsInDeck.count < 3 { disableDealButton() }
         cardGridView.borderColor = borderColor()
+        game.flipAllAvailableCardsFaceUp()
     }
     
     private func disableDealButton() {

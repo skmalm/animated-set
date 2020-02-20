@@ -27,6 +27,12 @@ struct SetGame {
         availableCards.shuffle()
     }
     
+    mutating func flipAllAvailableCardsFaceUp() {
+        for i in 0..<availableCards.count {
+            availableCards[i].isFaceUp = true
+        }
+    }
+    
     // add three additional cards to the available cards
     private mutating func drawThreeAdditionalCards() {
         // after initial 12-card draw, if there's a visible match, reduce the multiplier

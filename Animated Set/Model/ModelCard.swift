@@ -14,10 +14,26 @@ struct ModelCard: Hashable, CustomStringConvertible {
         return "[\(shape), \(quantity), \(color), \(shading)]"
     }
     
+    static func == (lhs: ModelCard, rhs: ModelCard) -> Bool {
+        return
+            lhs.shape == rhs.shape &&
+            lhs.quantity == rhs.quantity &&
+            lhs.color == rhs.color &&
+            lhs.shading == rhs.shading
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(shape)
+        hasher.combine(quantity)
+        hasher.combine(color)
+        hasher.combine(shading)
+    }
+    
     let shape: Shape
     let quantity: Quantity
     let color: Color
     let shading: Shading
+    var isFaceUp = false
     
     enum Shape: CaseIterable {
         case shape1

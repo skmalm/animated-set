@@ -46,6 +46,13 @@ class CardGridView: UIView {
             }
             let card = CardView(fromModelCard: modelCard, withFrame: cardFrame)
             card.contentMode = .redraw
+            // "face down" cards have a huge brown border covering the card
+            card.layer.borderColor = UIColor.brown.cgColor
+            if modelCard.isFaceUp {
+                card.layer.borderWidth = 0.0
+            } else {
+                card.layer.borderWidth = 100.0
+            }
             addSubview(card)
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: Constants.flyInDuration,
@@ -53,11 +60,18 @@ class CardGridView: UIView {
                 options: [],
                 animations: { card.frame = grid[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero },
                 completion: { finished in
-                    if self.selectedCards.contains(modelCard) {
-                        card.layer.borderWidth = Constants.cellInsetValue
-                        card.layer.borderColor = self.borderColor
+                    if !modelCard.isFaceUp {
+                        UIView.transition(
+                        with: card,
+                        duration: 0.5,
+                        options: [.transitionFlipFromLeft],
+                        animations: { card.layer.borderWidth = 0.0 })
                     }
             })
+            if self.selectedCards.contains(modelCard) {
+                card.layer.borderWidth = Constants.cellInsetValue
+                card.layer.borderColor = self.borderColor
+            }
             gridTracker += 1
         }
         previousGrid = grid
