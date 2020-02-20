@@ -40,25 +40,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var cardGridView: CardGridView! { didSet {
         cardGridView.viewController = self
-        // add swipe down to deal gesture to cardGridView
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
-        swipe.direction = .down
-        cardGridView.addGestureRecognizer(swipe)
-        // add rotate to shuffle cards to cardGridView
-        let rotation = UIRotationGestureRecognizer(target: self, action: #selector(rotateAction(byHandlingGestureRecognizedBy:)))
-        cardGridView.addGestureRecognizer(rotation)
         }}
-    
-    @objc private func swipeAction() {
-        pressDealButton(dealButton)
-    }
-    
-    @objc private func rotateAction(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
-        if recognizer.state == .ended {
-            game.shuffleAvailableCards()
-            updateViewFromModel()
-        }
-    }
     
     @objc func tapCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
         if recognizer.state == .ended {
