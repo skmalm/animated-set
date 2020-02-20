@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
+    // TEMP method, will remove button
     @IBAction func touchFlipButton(_ sender: UIButton) {
         for subview in cardGridView.subviews {
             guard let cardView = subview as? CardView else { return }
@@ -35,13 +35,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set basic programmatic styling then start a new game
-        dealButton.layer.cornerRadius = Constants.dealButtonCornerRadius
-        // TEMP
-        deckCardView.modelCard = ModelCard(shape: .shape1, quantity: .one, color: .color1, shading: .shading1)
-        deckCardView.contentMode = .redraw
-        discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2)
-        discardCardView.contentMode = .redraw
         startNewGame()
     }
 
@@ -165,13 +158,22 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
-    @IBOutlet weak var discardCardView: CardView!
-    @IBOutlet weak var deckCardView: CardView!
+    @IBOutlet weak var discardCardView: CardView! { didSet {
+        // TEMP, will find better way of managing what cards are shown in deck and discard
+        discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2)
+        discardCardView.contentMode = .redraw
+        }}
+    @IBOutlet weak var deckCardView: CardView! { didSet {
+        // TEMP, will find better way of managing what cards are shown in deck and discard
+        deckCardView.modelCard = ModelCard(shape: .shape1, quantity: .one, color: .color1, shading: .shading1)
+        deckCardView.contentMode = .redraw
+        }}
     @IBOutlet private weak var cheatButton: UIButton!
     @IBOutlet private weak var multiplierLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
-    @IBOutlet private weak var dealButton: UIButton!
+    @IBOutlet private weak var dealButton: UIButton! { didSet {
+        dealButton.layer.cornerRadius = Constants.dealButtonCornerRadius }}
 }
 
 extension ViewController {
