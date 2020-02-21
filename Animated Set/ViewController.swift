@@ -15,66 +15,9 @@ class ViewController: UIViewController {
         startNewGame()
     }
 
-    private var game: SetGame!
-    private var cheatMode = false
-    
-    private func startNewGame() {
-        game = SetGame()
-        cheatMode = false
-        previousGrid = nil
-        updateUI()
-    }
-    
-    private var allCardViews: [CardView] {
-        return cardGridView.subviews as! [CardView]
-    }
-    
-    var modelCards = [ModelCard]() { didSet { cardGridView.setNeedsLayout() }}
-    var selectedCards = Set<ModelCard>()
-    
-    var previousGrid: Grid?
-        
-    func generateViewCards() {
-        var grid = Grid(layout: .aspectRatio(Constants.cardAspectRatio), frame: cardGridView.bounds)
-        grid.cellCount = modelCards.count
-        var gridTracker = 0
-        for modelCard in modelCards {
-            var cardFrame = CGRect(origin: CGPoint(x: 0, y: -104.5), size: deckCardView!.frame.size)
-            if previousGrid != nil {
-                cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero
-            }
-            let card = CardView(fromModelCard: modelCard, withFrame: cardFrame)
-            card.contentMode = .redraw
-            // "face down" cards have a huge brown border covering the card
-            card.layer.borderColor = UIColor.brown.cgColor
-            if modelCard.isFaceUp {
-                card.layer.borderWidth = 0.0
-            } else {
-                card.layer.borderWidth = 100.0
-            }
-            cardGridView.addSubview(card)
-            UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: Constants.flyInDuration,
-                delay: 0,
-                options: [],
-                animations: { card.frame = grid[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero },
-                completion: { finished in
-                    if !modelCard.isFaceUp {
-                        UIView.transition(
-                            with: card,
-                            duration: 0.5,
-                            options: [.transitionFlipFromLeft],
-                            animations: { card.layer.borderWidth = 0.0 })
-                    }
-            })
-            if self.selectedCards.contains(modelCard) {
-                card.layer.borderWidth = Constants.cellInsetValue
-                card.layer.borderColor = borderColor()
-            }
-            gridTracker += 1
-        }
-        previousGrid = grid
-    }
+    @IBOutlet weak var cardGridView: CardGridView! { didSet {
+        cardGridView.viewController = self
+        }}
     
     @objc func tapCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
         if recognizer.state == .ended {
@@ -83,13 +26,28 @@ class ViewController: UIViewController {
             // cardviews themselves have a modelCard set on initialization
             let tappedModelCard = tappedViewCard.modelCard!
             game.select(tappedModelCard)
-            updateUI()
+            updateViewFromModel()
         }
     }
+        
+    private var game: SetGame!
     
     // cards are identified by indices in the game.cards array
     
-    private func updateUI() {
+    private var cheatMode = false
+    
+    private func startNewGame() {
+        game = SetGame()
+        cheatMode = false
+        cardGridView.previousGrid = nil
+        updateViewFromModel()
+    }
+    
+    private var allCardViews: [CardView] {
+        return cardGridView.subviews as! [CardView]
+    }
+    
+    private func updateViewFromModel() {
         guard game.setAvailable() || game.cardsInDeck.count >= 3 else {
             multiplierLabel.text = "Game over!"
             return
@@ -100,8 +58,8 @@ class ViewController: UIViewController {
         if cheatMode { multiplierLabel.text = "Cheat Mode" }
         scoreLabel.text = cheatMode ? "Score: N/A" : "Score: \(game.score)"
         
-        selectedCards = game.selectedCards
-        modelCards = game.availableCards
+        cardGridView.selectedCards = game.selectedCards
+        cardGridView.modelCards = game.availableCards
 
         // manage deal button and cheat button based on game state
         if !game.setAvailable() {
@@ -117,6 +75,7 @@ class ViewController: UIViewController {
         } else { disableDealButton() }
         // if no cards left in deck, disable deal button
         if game.cardsInDeck.count < 3 { disableDealButton() }
+        cardGridView.borderColor = borderColor()
         game.flipAllAvailableCardsFaceUp()
     }
     
@@ -147,7 +106,7 @@ class ViewController: UIViewController {
     
     @IBAction private func pressDealButton(_ sender: UIButton) {
         game.dealThreeCards()
-        updateUI()
+        updateViewFromModel()
     }
     
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
@@ -157,7 +116,7 @@ class ViewController: UIViewController {
     @IBAction private func touchCheatButton(_ sender: UIButton) {
         game.cheat()
         cheatMode = true
-        updateUI()
+        updateViewFromModel()
     }
     
     @IBOutlet weak var discardCardView: CardView! { didSet {
@@ -176,27 +135,10 @@ class ViewController: UIViewController {
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
         dealButton.layer.cornerRadius = Constants.dealButtonCornerRadius }}
-    @IBOutlet weak var cardGridView: CardGridView! { didSet {
-        cardGridView.superviewController = self
-        cardGridView.clipsToBounds = false
-        }}
 }
 
 extension ViewController {
     private struct Constants {
         static let dealButtonCornerRadius: CGFloat = 12.0
-        static let cardAspectRatio: CGFloat = 0.57
-        static let cellInsetValue: CGFloat = 4.0
-        static let selectionBorderWidth: CGFloat = 5.0
-        static let flyInDuration = 0.5
-    }
-    private var insetSize: CGSize {
-        return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)
-    }
-}
-
-extension CGRect {
-    func inset(by size: CGSize) -> CGRect {
-        return insetBy(dx: size.width, dy: size.height)
     }
 }
