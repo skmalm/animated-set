@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
 
     var deckFrameInVCContext: CGRect {
-        return view.convert(deckCardView.frame, from: deckCardView)
+        return view.convert(deckView.frame, from: deckView)
     }
     
     @IBOutlet weak var cardGridView: CardGridView! { didSet {
@@ -123,15 +123,11 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
+    @IBOutlet weak var deckView: UIView!
     @IBOutlet weak var discardCardView: CardView! { didSet {
         // TEMP, will find better way of managing what cards are shown in deck and discard
         discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2)
         discardCardView.contentMode = .redraw
-        }}
-    @IBOutlet weak var deckCardView: CardView! { didSet {
-        // TEMP, will find better way of managing what cards are shown in deck and discard
-        deckCardView.modelCard = ModelCard(shape: .shape1, quantity: .one, color: .color1, shading: .shading1)
-        deckCardView.contentMode = .redraw
         }}
     @IBOutlet private weak var cheatButton: UIButton!
     @IBOutlet private weak var multiplierLabel: UILabel!
