@@ -41,10 +41,7 @@ class CardGridView: UIView {
         var gridTracker = 0
         let deckFrame = convert(viewController.deckFrameInVCContext, from: viewController.view)
         for modelCard in modelCards {
-            var cardFrame = CGRect(origin: deckFrame.origin, size: deckFrame.size)
-            if previousGrid != nil {
-                cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero
-            }
+            let cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect(origin: deckFrame.origin, size: deckFrame.size)
             let card = CardView(fromModelCard: modelCard, withFrame: cardFrame)
             card.contentMode = .redraw
             // "face down" cards have a huge brown border covering the card
