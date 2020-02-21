@@ -39,8 +39,9 @@ class CardGridView: UIView {
         var grid = Grid(layout: .aspectRatio(Constants.cardAspectRatio), frame: bounds)
         grid.cellCount = modelCards.count
         var gridTracker = 0
+        let deckFrame = convert(viewController.deckFrameInVCContext, from: viewController.view)
         for modelCard in modelCards {
-            var cardFrame = CGRect(origin: bounds.origin, size: grid.cellSize)
+            var cardFrame = CGRect(origin: deckFrame.origin, size: deckFrame.size)
             if previousGrid != nil {
                 cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero
             }

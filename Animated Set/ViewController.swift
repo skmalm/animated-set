@@ -15,6 +15,10 @@ class ViewController: UIViewController {
         startNewGame()
     }
 
+    var deckFrameInVCContext: CGRect {
+        return view.convert(deckCardView.frame, from: deckCardView)
+    }
+    
     @IBOutlet weak var cardGridView: CardGridView! { didSet {
         cardGridView.viewController = self
         }}
