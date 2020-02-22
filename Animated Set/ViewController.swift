@@ -12,7 +12,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startNewGame()
+        // slight delay for starting game allows setup to finish before animations start
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.startNewGame()
+        }
     }
 
     var deckFrameInVCContext: CGRect {
@@ -29,12 +32,12 @@ class ViewController: UIViewController {
             let tappedViewCard = recognizer.view! as! CardView
             // cardviews themselves have a modelCard set on initialization
             let tappedModelCard = tappedViewCard.modelCard!
-            game.select(tappedModelCard)
-            updateViewFromModel()
+            game?.select(tappedModelCard)
+            updateUI()
         }
     }
         
-    private var game: SetGame!
+    private var game: SetGame?
     
     // cards are identified by indices in the game.cards array
     
@@ -44,43 +47,43 @@ class ViewController: UIViewController {
         game = SetGame()
         cheatMode = false
         cardGridView.previousGrid = nil
-        updateViewFromModel()
+        updateUI()
     }
     
     private var allCardViews: [CardView] {
         return cardGridView.subviews as! [CardView]
     }
     
-    private func updateViewFromModel() {
-        guard game.setAvailable() || game.cardsInDeck.count >= 3 else {
+    private func updateUI() {
+        guard game != nil, game!.setAvailable() || game!.cardsInDeck.count >= 3 else {
             multiplierLabel.text = "Game over!"
             return
         }
         cheatButton.isEnabled = true
-        deckCountLabel.text = "Deck: \(game.cardsInDeck.count)"
-        multiplierLabel.text = "Multiplier: \(game.multiplier)x"
+        deckCountLabel.text = "Deck: \(game!.cardsInDeck.count)"
+        multiplierLabel.text = "Multiplier: \(game!.multiplier)x"
         if cheatMode { multiplierLabel.text = "Cheat Mode" }
-        scoreLabel.text = cheatMode ? "Score: N/A" : "Score: \(game.score)"
+        scoreLabel.text = cheatMode ? "Score: N/A" : "Score: \(game!.score)"
         
-        cardGridView.selectedCards = game.selectedCards
-        cardGridView.modelCards = game.availableCards
+        cardGridView.selectedCards = game!.selectedCards
+        cardGridView.modelCards = game!.availableCards
 
         // manage deal button and cheat button based on game state
-        if !game.setAvailable() {
+        if !game!.setAvailable() {
             dealButton.setTitle("No Sets. Free Draw!", for: .normal)
             cheatButton.isEnabled = false
-        } else if game.selectedCardsMakeASet {
+        } else if game!.selectedCardsMakeASet {
             dealButton.setTitle("Replace Matched Set", for: .normal)
         } else {
             dealButton.setTitle("Deal 3 & Reduce Multiplier", for: .normal)
         }
-        if game.selectedCardsMakeASet || game.cardsInDeck.count >= 3 {
+        if game!.selectedCardsMakeASet || game!.cardsInDeck.count >= 3 {
             enableDealButton()
         } else { disableDealButton() }
         // if no cards left in deck, disable deal button
-        if game.cardsInDeck.count < 3 { disableDealButton() }
+        if game!.cardsInDeck.count < 3 { disableDealButton() }
         cardGridView.borderColor = borderColor()
-        game.flipAllAvailableCardsFaceUp()
+        game!.flipAllAvailableCardsFaceUp()
     }
     
     private func disableDealButton() {
@@ -96,9 +99,10 @@ class ViewController: UIViewController {
     
     // return card border color dependent on selected cards
     private func borderColor() -> CGColor {
+        // note that force unwrapping game is safe because method is called from updateUI
         // if three cards are selected, border color depends on match
-        if game.selectedCards.count == 3 {
-            if game.selectedCardsMakeASet {
+        if game!.selectedCards.count == 3 {
+            if game!.selectedCardsMakeASet {
                 return Styles.green
             } else {
                 return Styles.red
@@ -109,8 +113,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func pressDealButton(_ sender: UIButton) {
-        game.dealThreeCards()
-        updateViewFromModel()
+        game?.dealThreeCards()
+        updateUI()
     }
     
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
@@ -118,9 +122,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func touchCheatButton(_ sender: UIButton) {
-        game.cheat()
+        game?.cheat()
         cheatMode = true
-        updateViewFromModel()
+        updateUI()
     }
     
     @IBOutlet weak var deckView: UIView!
