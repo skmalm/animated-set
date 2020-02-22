@@ -18,7 +18,7 @@ class CardView: UIView {
         roundedRect.addClip()
         // if modelCard is nil, card is face down and should be brown
         if modelCard == nil {
-            UIColor.brown.setFill()
+            UIColor(named: "FaceDownColor")?.setFill()
         } else {
             UIColor.white.setFill()
         }

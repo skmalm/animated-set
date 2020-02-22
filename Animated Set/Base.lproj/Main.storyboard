@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -57,7 +58,7 @@
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nHu-tl-CTY">
                                                         <rect key="frame" x="0.0" y="0.0" width="55" height="78"/>
-                                                        <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" name="FaceDownColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="nHu-tl-CTY" secondAttribute="height" multiplier="7:10" id="koJ-px-yjA"/>
                                                         </constraints>
@@ -158,4 +159,9 @@
             <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="FaceDownColor">
+            <color red="0.71847122910000005" green="0.083369381729999997" blue="0.0050399801690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
