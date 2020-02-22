@@ -14,7 +14,7 @@ class CardView: UIView {
     override func draw(_ rect: CGRect) {
 
         // generate and draw card background
-        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: Constants.cornerRadius)
+        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: ViewController.Constants.cornerRadius)
         roundedRect.addClip()
         // if modelCard is nil, card is face down and should be brown
         if modelCard == nil {
@@ -67,7 +67,6 @@ class CardView: UIView {
 
 extension CardView {
     private struct Constants {
-        static let cornerRadius: CGFloat = 6.0
         static let shapeWidthRatio: CGFloat = 0.6
         static let shapeHeightRatio: CGFloat = 0.2
         static let shapeLeftBoundaryRatio: CGFloat = 0.2

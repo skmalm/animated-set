@@ -133,22 +133,23 @@ class ViewController: UIViewController {
         updateUI()
     }
     
-    @IBOutlet weak var deckView: UIView!
-    @IBOutlet weak var discardCardView: CardView! { didSet {
-        // TEMP, will find better way of managing what cards are shown in deck and discard
-        discardCardView.modelCard = ModelCard(shape: .shape2, quantity: .two, color: .color2, shading: .shading2)
-        discardCardView.contentMode = .redraw
+    @IBOutlet weak var deckView: UIView! { didSet {
+        deckView.layer.cornerRadius = Constants.cornerRadius
         }}
+    @IBOutlet weak var discardView: UIView! { didSet {
+        discardView.layer.cornerRadius = Constants.cornerRadius
+        }}
+    
     @IBOutlet private weak var cheatButton: UIButton!
     @IBOutlet private weak var multiplierLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
-        dealButton.layer.cornerRadius = Constants.dealButtonCornerRadius }}
+        dealButton.layer.cornerRadius = Constants.cornerRadius }}
 }
 
 extension ViewController {
-    private struct Constants {
-        static let dealButtonCornerRadius: CGFloat = 12.0
+     struct Constants {
+        static let cornerRadius: CGFloat = 6.0
     }
 }

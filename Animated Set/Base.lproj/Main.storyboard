@@ -146,6 +146,7 @@
                         <outlet property="dealButton" destination="ivx-f4-TaQ" id="cyV-H1-aBu"/>
                         <outlet property="deckCountLabel" destination="cj2-HZ-Ggb" id="6bj-83-yTD"/>
                         <outlet property="deckView" destination="nHu-tl-CTY" id="92P-d5-mtb"/>
+                        <outlet property="discardView" destination="d3O-Tj-ZM0" id="O2Y-FR-nlh"/>
                         <outlet property="multiplierLabel" destination="U3S-ez-6Vt" id="2KQ-DM-ANA"/>
                         <outlet property="scoreLabel" destination="hi4-n6-Pby" id="HAJ-uP-1O9"/>
                     </connections>
