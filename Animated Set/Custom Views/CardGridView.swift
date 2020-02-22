@@ -38,7 +38,10 @@ class CardGridView: UIView {
     private func generateViewCards() {
         var grid = Grid(layout: .aspectRatio(Constants.cardAspectRatio), frame: bounds)
         grid.cellCount = modelCards.count
+        // gridGracker tracks grid cells when looping trhough modelCards
         var gridTracker = 0
+        // delayTracker increases after facedown card appears, allowing cards to be drawn one at a time
+        var delayTracker = 0.0
         let deckFrame = convert(viewController.deckFrameInVCContext, from: viewController.view)
         for modelCard in modelCards {
             let cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect(origin: deckFrame.origin, size: deckFrame.size)
@@ -50,11 +53,12 @@ class CardGridView: UIView {
                 card.layer.borderWidth = 0.0
             } else {
                 card.layer.borderWidth = 100.0
+                delayTracker += 0.1
             }
             addSubview(card)
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: Constants.flyInDuration,
-                delay: 0,
+                delay: delayTracker,
                 options: [],
                 animations: { card.frame = grid[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero },
                 completion: { finished in
@@ -73,6 +77,7 @@ class CardGridView: UIView {
             gridTracker += 1
         }
         previousGrid = grid
+        delayTracker = 0.0
     }
 }
 
