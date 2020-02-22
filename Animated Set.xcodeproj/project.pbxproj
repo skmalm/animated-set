@@ -90,7 +90,6 @@
 		9EE5A53C23E1F55F006E7916 /* Animated Set */ = {
 			isa = PBXGroup;
 			children = (
-				9EE5A55123E1F56E006E7916 /* Supporting Files */,
 				9EE5A54123E1F55F006E7916 /* ViewController.swift */,
 				9ECF5B1923FDE4EC002E3006 /* Custom Views */,
 				9ECF5B1823FDE4C7002E3006 /* Model */,
@@ -99,6 +98,7 @@
 				9EE5A54823E1F562006E7916 /* LaunchScreen.storyboard */,
 				9EE5A54623E1F562006E7916 /* Assets.xcassets */,
 				9EE5A54B23E1F562006E7916 /* Info.plist */,
+				9EE5A55123E1F56E006E7916 /* Supporting Files */,
 			);
 			path = "Animated Set";
 			sourceTree = "<group>";

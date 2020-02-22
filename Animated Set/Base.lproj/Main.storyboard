@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fX6-dd-45Q" userLabel="Top Label &amp; Buttons">
-                                <rect key="frame" x="20" y="44" width="374" height="110"/>
+                                <rect key="frame" x="20" y="44" width="374" height="78.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XoX-iy-eMc" userLabel="New Game &amp; Cheat Stack">
-                                        <rect key="frame" x="0.0" y="18" width="119.5" height="74"/>
+                                        <rect key="frame" x="0.0" y="2.5" width="119.5" height="74"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqk-bq-uuy">
                                                 <rect key="frame" x="18.5" y="0.0" width="82" height="37"/>
@@ -44,47 +44,44 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="wTk-DV-m7d" userLabel="Top Label">
-                                        <rect key="frame" x="127.5" y="17" width="119" height="76"/>
+                                        <rect key="frame" x="127.5" y="0.0" width="119" height="78.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gV-fY-CIJ" userLabel="Deck &amp; Discard Container">
-                                        <rect key="frame" x="254.5" y="0.0" width="119.5" height="110"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiU-NI-nzb">
+                                        <rect key="frame" x="254.5" y="0.0" width="119.5" height="78.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="soM-jr-LJ1" userLabel="Deck &amp; Discard Stack">
-                                                <rect key="frame" x="0.0" y="16" width="119.5" height="78"/>
-                                                <subviews>
-                                                    <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nHu-tl-CTY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="78"/>
-                                                        <color key="backgroundColor" name="FaceDownColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="nHu-tl-CTY" secondAttribute="height" multiplier="7:10" id="koJ-px-yjA"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0ju-1s-cCd" customClass="CardView" customModule="Animated_Set" customModuleProvider="target">
-                                                        <rect key="frame" x="65" y="0.0" width="54.5" height="78"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="0ju-1s-cCd" secondAttribute="height" multiplier="7:10" id="5eZ-kf-ZmL"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
+                                            <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nHu-tl-CTY">
+                                                <rect key="frame" x="-0.5" y="0.5" width="55" height="78"/>
+                                                <color key="backgroundColor" name="FaceDownColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="0ju-1s-cCd" firstAttribute="width" secondItem="0ju-1s-cCd" secondAttribute="height" multiplier="7:10" id="btL-Qc-sOL"/>
+                                                    <constraint firstAttribute="width" constant="55" id="Olx-ws-iJi"/>
+                                                    <constraint firstAttribute="height" constant="78" id="krX-Uc-xm9"/>
                                                 </constraints>
-                                                <variation key="heightClass=compact" spacing="121"/>
-                                            </stackView>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="d3O-Tj-ZM0" userLabel="Discard View">
+                                                <rect key="frame" x="64.5" y="0.5" width="55" height="78"/>
+                                                <color key="backgroundColor" name="FaceDownColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="78" id="2Wp-qf-OUy"/>
+                                                    <constraint firstAttribute="width" constant="55" id="rVY-br-pd8"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="soM-jr-LJ1" firstAttribute="leading" secondItem="0gV-fY-CIJ" secondAttribute="leading" id="REG-Km-rl5"/>
-                                            <constraint firstAttribute="trailing" secondItem="soM-jr-LJ1" secondAttribute="trailing" id="aHq-Gg-bIO"/>
-                                            <constraint firstItem="soM-jr-LJ1" firstAttribute="centerY" secondItem="0gV-fY-CIJ" secondAttribute="centerY" id="gYP-Xi-UGB"/>
+                                            <constraint firstItem="d3O-Tj-ZM0" firstAttribute="leading" secondItem="nHu-tl-CTY" secondAttribute="trailing" constant="10" id="Jeb-rS-Pvf"/>
+                                            <constraint firstItem="nHu-tl-CTY" firstAttribute="centerY" secondItem="EiU-NI-nzb" secondAttribute="centerY" id="Smt-eX-lRA"/>
+                                            <constraint firstAttribute="trailing" secondItem="d3O-Tj-ZM0" secondAttribute="trailing" id="dyV-jQ-G2d"/>
+                                            <constraint firstItem="d3O-Tj-ZM0" firstAttribute="centerY" secondItem="EiU-NI-nzb" secondAttribute="centerY" id="jUO-gC-TE2"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="EiU-NI-nzb" firstAttribute="height" secondItem="wTk-DV-m7d" secondAttribute="height" id="QQX-2P-PoL"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivx-f4-TaQ" userLabel="Deal Button">
                                 <rect key="frame" x="20" y="813" width="374" height="49"/>
@@ -121,7 +118,7 @@
                                 </subviews>
                             </stackView>
                             <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qHS-VK-f9J" customClass="CardGridView" customModule="Animated_Set" customModuleProvider="target">
-                                <rect key="frame" x="20" y="164" width="374" height="604.5"/>
+                                <rect key="frame" x="20" y="132.5" width="374" height="636"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -149,7 +146,6 @@
                         <outlet property="dealButton" destination="ivx-f4-TaQ" id="cyV-H1-aBu"/>
                         <outlet property="deckCountLabel" destination="cj2-HZ-Ggb" id="6bj-83-yTD"/>
                         <outlet property="deckView" destination="nHu-tl-CTY" id="92P-d5-mtb"/>
-                        <outlet property="discardCardView" destination="0ju-1s-cCd" id="40W-Nm-Fy6"/>
                         <outlet property="multiplierLabel" destination="U3S-ez-6Vt" id="2KQ-DM-ANA"/>
                         <outlet property="scoreLabel" destination="hi4-n6-Pby" id="HAJ-uP-1O9"/>
                     </connections>
@@ -161,7 +157,7 @@
     </scenes>
     <resources>
         <namedColor name="FaceDownColor">
-            <color red="0.71847122910000005" green="0.083369381729999997" blue="0.0050399801690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.71799999475479126" green="0.082999996840953827" blue="0.004999999888241291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
