@@ -11,7 +11,7 @@ import Foundation
 struct ModelCard: Hashable, CustomStringConvertible {
 
     var description: String {
-        return "[\(shape), \(quantity), \(color), \(shading)]"
+        return "[\(shape), \(quantity), \(color), \(shading), isFaceUp: \(isFaceUp)]"
     }
     
     static func == (lhs: ModelCard, rhs: ModelCard) -> Bool {

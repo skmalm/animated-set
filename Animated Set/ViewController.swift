@@ -18,6 +18,12 @@ class ViewController: UIViewController {
         }
     }
 
+    // if user rotates device, make sure grid has updated (flipped up) available cards
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if game != nil { cardGridView.modelCards = game!.availableCards }
+    }
+    
     var deckFrameInVCContext: CGRect {
         return view.convert(deckView.frame, from: deckView)
     }
