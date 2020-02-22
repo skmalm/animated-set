@@ -45,14 +45,13 @@ class CardGridView: UIView {
         let deckFrame = convert(viewController.deckFrameInVCContext, from: viewController.view)
         for modelCard in modelCards {
             let cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect(origin: deckFrame.origin, size: deckFrame.size)
-            let card = CardView(fromModelCard: modelCard, withFrame: cardFrame)
+            let card = CardView(withFrame: cardFrame)
             card.contentMode = .redraw
             // "face down" cards have a huge brown border covering the card
             card.layer.borderColor = UIColor.brown.cgColor
             if modelCard.isFaceUp {
-                card.layer.borderWidth = 0.0
+                card.modelCard = modelCard
             } else {
-                card.layer.borderWidth = 100.0
                 delayTracker += 0.1
             }
             addSubview(card)
@@ -67,7 +66,7 @@ class CardGridView: UIView {
                         with: card,
                         duration: 0.5,
                         options: [.transitionFlipFromLeft],
-                        animations: { card.layer.borderWidth = 0.0 })
+                        animations: { card.modelCard = modelCard })
                     }
             })
             if self.selectedCards.contains(modelCard) {

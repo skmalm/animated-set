@@ -16,17 +16,23 @@ class CardView: UIView {
         // generate and draw card background
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: Constants.cornerRadius)
         roundedRect.addClip()
-        UIColor.white.setFill()
+        // if modelCard is nil, card is face down and should be brown
+        if modelCard == nil {
+            UIColor.brown.setFill()
+        } else {
+            UIColor.white.setFill()
+        }
         roundedRect.fill()
     }
     
-    var modelCard: ModelCard?
+    var modelCard: ModelCard? { didSet { setNeedsDisplay(); setNeedsLayout() }}
     
     override func layoutSubviews() {
         super.layoutSubviews()
         for subview in subviews {
             subview.removeFromSuperview()
         }
+        // if modelCard is nil, card is facedown and should have no shapes
         guard modelCard != nil else { return }
         switch modelCard!.quantity {
         case .one:
@@ -50,8 +56,7 @@ class CardView: UIView {
         addSubview(shape)
     }
  
-    init(fromModelCard modelCard: ModelCard, withFrame frame: CGRect) {
-        self.modelCard = modelCard
+    init(withFrame frame: CGRect) {
         super.init(frame: frame)
     }
     
