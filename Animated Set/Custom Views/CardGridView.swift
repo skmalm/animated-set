@@ -52,7 +52,7 @@ class CardGridView: UIView {
             if modelCard.isFaceUp {
                 card.modelCard = modelCard
             } else {
-                delayTracker += 0.1
+                delayTracker += Constants.flyDelayIncrement
             }
             addSubview(card)
             UIViewPropertyAnimator.runningPropertyAnimator(
@@ -91,7 +91,9 @@ extension CardGridView {
         static let cardAspectRatio: CGFloat = 0.57
         static let cellInsetValue: CGFloat = 4.0
         static let selectionBorderWidth: CGFloat = 5.0
-        static let flyInDuration = 0.5
+        static let flyInDuration: TimeInterval = 0.5
+        // flyDelayIncrement controls how long new cards wait to fly in
+        static let flyDelayIncrement: TimeInterval = 0.1
     }
     private var insetSize: CGSize {
         return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)
