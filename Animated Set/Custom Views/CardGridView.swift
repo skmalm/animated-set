@@ -33,6 +33,7 @@ class CardGridView: UIView {
             for card in removedModelCards {
                 // find cardview and animate it
                 guard let cardView = cardView(fromModelCard: card) else { continue }
+                bringSubviewToFront(cardView)
                 dynamicAnimationFinished = false
                 cardBehavior.add(cardView)
                 // setNeedsLayout will be called upon animation pause
