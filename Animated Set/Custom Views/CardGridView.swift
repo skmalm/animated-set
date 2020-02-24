@@ -14,29 +14,27 @@ class CardGridView: UIView {
     // Implicit unwrapping safe because property is set in controller property's didSet
     weak var viewController: ViewController!
     
+    lazy var animator = UIDynamicAnimator(referenceView: viewController.view)
+    
+    var dynamicAnimationFinished = true
+    
+    lazy var cardBehavior = DynamicCardBehavior(inAnimator: animator)
+    
     var modelCards = [ModelCard]() { didSet {
+        // TEMP; THERE MUST BE A BETTER PLACE TO SET THE DELEGATE
+        animator.delegate = self
         previousModelCards = Set(oldValue)
         let modelCardsSet = Set(modelCards)
         let symmetricDifference = modelCardsSet.symmetricDifference(previousModelCards)
-//        print("before conditional:")
-//        print("previousModelCards.count is \(self.previousModelCards.count)")
-//        print("symmetricDifference.count is \(symmetricDifference.count)")
         let removedModelCards = symmetricDifference.filter { modelCard in
                 return !modelCards.contains(modelCard)
         }
         if !removedModelCards.isEmpty {
             for card in removedModelCards {
-                print(card)
                 // find cardview and animate it
                 guard let cardView = cardView(fromModelCard: card) else { continue }
-                UIView.transition(
-                    with: cardView,
-                    duration: 1.0,
-                    options: [.curveEaseOut],
-                    animations: { cardView.alpha = 0.0 },
-                    completion: { finished in
-                        self.setNeedsLayout()
-                })
+                dynamicAnimationFinished = false
+                cardBehavior.add(cardView)
                 // setNeedsLayout will be called upon animation pause
             }
         } else {
@@ -60,20 +58,12 @@ class CardGridView: UIView {
     var selectedCards = Set<ModelCard>()
 //    var previousSelectedCards = Set<ModelCard>()
     
-    lazy var animator = UIDynamicAnimator(referenceView: viewController.view)
-    
-    lazy var collisionBehavior: UICollisionBehavior = {
-        let behavior = UICollisionBehavior()
-        behavior.translatesReferenceBoundsIntoBoundary = true
-        animator.addBehavior(behavior)
-        return behavior
-    }()
-    
     // clear is used as a default value
     var borderColor: CGColor = UIColor.clear.cgColor
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        guard dynamicAnimationFinished else { return }
         for subview in subviews {
             subview.removeFromSuperview()
         }
@@ -148,5 +138,12 @@ extension CardGridView {
     }
     private var insetSize: CGSize {
         return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)
+    }
+}
+
+extension CardGridView: UIDynamicAnimatorDelegate {
+    func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
+        dynamicAnimationFinished = true
+        setNeedsLayout()
     }
 }

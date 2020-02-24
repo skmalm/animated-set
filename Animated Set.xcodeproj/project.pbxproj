@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E98968223E9E21A00B02D59 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* Styles.swift */; };
 		9E9FA1D923E486B0008FEF1C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FA1D823E486B0008FEF1C /* Grid.swift */; };
+		9EC25C1424047E3000E11FDD /* DynamicCardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC25C1324047E3000E11FDD /* DynamicCardBehavior.swift */; };
 		9EE5A53E23E1F55F006E7916 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE5A53D23E1F55F006E7916 /* AppDelegate.swift */; };
 		9EE5A54023E1F55F006E7916 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE5A53F23E1F55F006E7916 /* SceneDelegate.swift */; };
 		9EE5A54223E1F55F006E7916 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE5A54123E1F55F006E7916 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		9E98968123E9E21A00B02D59 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9E9FA1D823E486B0008FEF1C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		9EC25C1324047E3000E11FDD /* DynamicCardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCardBehavior.swift; sourceTree = "<group>"; };
 		9EE5A53A23E1F55F006E7916 /* Animated Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animated Set.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE5A53D23E1F55F006E7916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EE5A53F23E1F55F006E7916 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				9EE5A55623E1FFF6006E7916 /* CardGridView.swift */,
 				9EED355C23E3574F0083A866 /* ShapeView.swift */,
 				9EE5A55823E206E0006E7916 /* CardView.swift */,
+				9EC25C1324047E3000E11FDD /* DynamicCardBehavior.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				9EED355D23E3574F0083A866 /* ShapeView.swift in Sources */,
 				9EE5A55723E1FFF6006E7916 /* CardGridView.swift in Sources */,
 				9EE5A55323E1F5C0006E7916 /* ModelCard.swift in Sources */,
+				9EC25C1424047E3000E11FDD /* DynamicCardBehavior.swift in Sources */,
 				9E9FA1D923E486B0008FEF1C /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
