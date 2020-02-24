@@ -14,9 +14,60 @@ class CardGridView: UIView {
     // Implicit unwrapping safe because property is set in controller property's didSet
     weak var viewController: ViewController!
     
-    var modelCards = [ModelCard]() { didSet { setNeedsLayout() }}
+    var modelCards = [ModelCard]() { didSet {
+        previousModelCards = Set(oldValue)
+        let modelCardsSet = Set(modelCards)
+        let symmetricDifference = modelCardsSet.symmetricDifference(previousModelCards)
+//        print("before conditional:")
+//        print("previousModelCards.count is \(self.previousModelCards.count)")
+//        print("symmetricDifference.count is \(symmetricDifference.count)")
+        let removedModelCards = symmetricDifference.filter { modelCard in
+                return !modelCards.contains(modelCard)
+        }
+        if !removedModelCards.isEmpty {
+            for card in removedModelCards {
+                print(card)
+                // find cardview and animate it
+                guard let cardView = cardView(fromModelCard: card) else { continue }
+                UIView.transition(
+                    with: cardView,
+                    duration: 1.0,
+                    options: [.curveEaseOut],
+                    animations: { cardView.alpha = 0.0 },
+                    completion: { finished in
+                        self.setNeedsLayout()
+                })
+                // setNeedsLayout will be called upon animation pause
+            }
+        } else {
+            setNeedsLayout()
+        }
+    }}
+    
+    func cardView(fromModelCard modelCard: ModelCard) -> CardView? {
+        for subview in subviews {
+            guard let cardView = subview as? CardView else { return nil }
+            if cardView.modelCard == modelCard {
+                return cardView
+            }
+        }
+        // return nil upon failure to find cardView
+        return nil
+    }
+    
+    var previousModelCards = Set<ModelCard>()
     
     var selectedCards = Set<ModelCard>()
+//    var previousSelectedCards = Set<ModelCard>()
+    
+    lazy var animator = UIDynamicAnimator(referenceView: viewController.view)
+    
+    lazy var collisionBehavior: UICollisionBehavior = {
+        let behavior = UICollisionBehavior()
+        behavior.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(behavior)
+        return behavior
+    }()
     
     // clear is used as a default value
     var borderColor: CGColor = UIColor.clear.cgColor
