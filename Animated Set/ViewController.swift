@@ -109,12 +109,12 @@ class ViewController: UIViewController {
         // if three cards are selected, border color depends on match
         if game!.selectedCards.count == 3 {
             if game!.selectedCardsMakeASet {
-                return Styles.green
+                return Styles.translucentGreen
             } else {
-                return Styles.red
+                return Styles.translucentRed
             }
         } else { // border color if less than 3 cards are selected
-            return Styles.orange
+            return Styles.selectionGray
         }
     }
     

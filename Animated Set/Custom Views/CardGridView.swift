@@ -70,7 +70,7 @@ class CardGridView: UIView {
                     }
             })
             if self.selectedCards.contains(modelCard) {
-                card.layer.borderWidth = Constants.cellInsetValue
+                card.layer.borderWidth = Constants.selectionBorderWidth
                 card.layer.borderColor = self.borderColor
             }
             gridTracker += 1
@@ -90,7 +90,7 @@ extension CardGridView {
     private struct Constants {
         static let cardAspectRatio: CGFloat = 0.57
         static let cellInsetValue: CGFloat = 4.0
-        static let selectionBorderWidth: CGFloat = 5.0
+        static let selectionBorderWidth: CGFloat = 50.0
         static let flyInDuration: TimeInterval = 0.5
         // flyDelayIncrement controls how long new cards wait to fly in
         static let flyDelayIncrement: TimeInterval = 0.1
