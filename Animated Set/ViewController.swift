@@ -145,7 +145,9 @@ class ViewController: UIViewController {
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
-        dealButton.layer.cornerRadius = Constants.cornerRadius }}
+        dealButton.layer.cornerRadius = Constants.cornerRadius
+        dealButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        }}
 }
 
 extension ViewController {
