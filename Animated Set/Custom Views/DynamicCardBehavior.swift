@@ -23,6 +23,12 @@ class DynamicCardBehavior: UIDynamicBehavior {
         return behavior
     }()
     
+//    lazy var snapBehavior: UISnapBehavior = {
+//        let behavior = UISnapBehavior()
+//        behavior.snapPoint = CGPoint(x: 0, y: 0)
+//        return behavior
+//    }()
+    
     func push(_ item: UIDynamicItem) {
         let push = UIPushBehavior(items: [item], mode: .instantaneous)
         push.angle = CGFloat.random(in: 0...2*CGFloat.pi)
@@ -39,9 +45,15 @@ class DynamicCardBehavior: UIDynamicBehavior {
         push(item)
     }
     
-    func remove(_ item: UIDynamicItem) {
-        collisionBehavior.removeItem(item)
-        itemBehavior.removeItem(item)
+    
+    func switchToSnap() {
+        let items = collisionBehavior.items
+        for item in items {
+            collisionBehavior.removeItem(item)
+            itemBehavior.removeItem(item)
+            let snapBehavior = UISnapBehavior(item: item, snapTo: CGPoint(x: 0, y: 0))
+            addChildBehavior(snapBehavior)
+        }
     }
     
     override init() {

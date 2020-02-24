@@ -144,7 +144,10 @@ extension CardGridView {
 
 extension CardGridView: UIDynamicAnimatorDelegate {
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
-        dynamicAnimationFinished = true
-        setNeedsLayout()
+        cardBehavior.switchToSnap()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.dynamicAnimationFinished = true
+            self.setNeedsLayout()
+        }
     }
 }
