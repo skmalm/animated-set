@@ -60,9 +60,11 @@ struct SetGame {
     }
     
     mutating func select(_ card: ModelCard) {
-        // if a match is currently selected and card tapped is not currently selected, replace matched cards
-        if selectedCardsMakeASet && !selectedCards.contains(card) {
-            dealThreeCards()
+        if selectedCardsMakeASet {
+            // if tapped cards part of matching set, do nothing, else replace matched cards
+            if selectedCards.contains(card) { return } else {
+                dealThreeCards()
+            }
         }
         selectedCardsMakeASet = false
         // if card already selected, deselect it
