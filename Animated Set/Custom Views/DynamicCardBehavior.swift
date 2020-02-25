@@ -45,13 +45,15 @@ class DynamicCardBehavior: UIDynamicBehavior {
         push(item)
     }
     
+    // initial/default value, replaced in convenience init
+    var snapPoint = CGPoint.zero
     
     func switchToSnap() {
         let items = collisionBehavior.items
         for item in items {
             collisionBehavior.removeItem(item)
             itemBehavior.removeItem(item)
-            let snapBehavior = UISnapBehavior(item: item, snapTo: CGPoint(x: 50, y: 50))
+            let snapBehavior = UISnapBehavior(item: item, snapTo: snapPoint)
             addChildBehavior(snapBehavior)
         }
     }
@@ -62,8 +64,9 @@ class DynamicCardBehavior: UIDynamicBehavior {
         addChildBehavior(itemBehavior)
     }
     
-    convenience init(inAnimator animator: UIDynamicAnimator) {
+    convenience init(inAnimator animator: UIDynamicAnimator, withSnapPoint snapPoint: CGPoint) {
         self.init()
         animator.addBehavior(self)
+        self.snapPoint = snapPoint
     }
 }

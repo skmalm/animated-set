@@ -27,6 +27,9 @@ class ViewController: UIViewController {
     var deckFrameInVCContext: CGRect {
         return view.convert(deckView.frame, from: deckView)
     }
+    var discardFrameInVCContext: CGRect {
+        return CGRect(x: deckFrameInVCContext.maxX + 10.0, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
+    }
     
     @IBOutlet weak var cardGridView: CardGridView! { didSet {
         cardGridView.viewController = self

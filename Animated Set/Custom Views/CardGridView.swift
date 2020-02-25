@@ -18,7 +18,7 @@ class CardGridView: UIView {
     
     var dynamicAnimationFinished = true
     
-    lazy var cardBehavior = DynamicCardBehavior(inAnimator: animator)
+    lazy var cardBehavior = DynamicCardBehavior(inAnimator: animator, withSnapPoint: CGPoint(x: viewController.discardFrameInVCContext.midX, y: viewController.discardFrameInVCContext.midY))
     
     var modelCards = [ModelCard]() { didSet {
         // TEMP; THERE MUST BE A BETTER PLACE TO SET THE DELEGATE
@@ -152,16 +152,26 @@ extension CardGridView {
 extension CardGridView: UIDynamicAnimatorDelegate {
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         cardBehavior.switchToSnap()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             for cardView in self.cardViewsToRemove {
-                UIView.transition(
-                with: cardView,
-                duration: 0.5,
-                options: [.transitionFlipFromLeft],
-                animations: { cardView.modelCard = nil },
-                completion: { finished in
-                    self.dynamicAnimationFinished = true
-                    self.setNeedsLayout()
+                UIViewPropertyAnimator.runningPropertyAnimator(
+                    withDuration: 0.5,
+                    delay: 0.0,
+                    options: [],
+                    animations: { cardView.frame.size = self.viewController.discardFrameInVCContext.size },
+                    completion: {
+                        if $0 == .end {
+                            UIView.transition(
+                            with: cardView,
+                            duration: 0.5,
+                            options: [.transitionFlipFromLeft],
+                            animations: { cardView.modelCard = nil },
+                            completion: { finished in
+                                self.dynamicAnimationFinished = true
+                                self.setNeedsLayout()
+                            })
+                        }
+                        
                 })
             }
         }
