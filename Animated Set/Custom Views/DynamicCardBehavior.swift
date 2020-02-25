@@ -51,7 +51,7 @@ class DynamicCardBehavior: UIDynamicBehavior {
         for item in items {
             collisionBehavior.removeItem(item)
             itemBehavior.removeItem(item)
-            let snapBehavior = UISnapBehavior(item: item, snapTo: CGPoint(x: 0, y: 0))
+            let snapBehavior = UISnapBehavior(item: item, snapTo: CGPoint(x: 50, y: 50))
             addChildBehavior(snapBehavior)
         }
     }

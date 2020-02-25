@@ -24,15 +24,8 @@ class CardGridView: UIView {
         // TEMP; THERE MUST BE A BETTER PLACE TO SET THE DELEGATE
         animator.delegate = self
         previousModelCards = Set(oldValue)
-        let modelCardsSet = Set(modelCards)
-        let symmetricDifference = modelCardsSet.symmetricDifference(previousModelCards)
-        let removedModelCards = symmetricDifference.filter { modelCard in
-                return !modelCards.contains(modelCard)
-        }
-        if !removedModelCards.isEmpty {
-            for card in removedModelCards {
-                // find cardview and animate it
-                guard let cardView = cardView(fromModelCard: card) else { continue }
+        if !cardViewsToRemove.isEmpty {
+            for cardView in cardViewsToRemove {
                 bringSubviewToFront(cardView)
                 dynamicAnimationFinished = false
                 cardBehavior.add(cardView)
@@ -55,6 +48,20 @@ class CardGridView: UIView {
     }
     
     var previousModelCards = Set<ModelCard>()
+    
+    var cardViewsToRemove: [CardView] {
+        let modelCardsSet = Set(modelCards)
+        let symmetricDifference = modelCardsSet.symmetricDifference(previousModelCards)
+        let modelCardsToRemove = symmetricDifference.filter { modelCard in
+                !modelCards.contains(modelCard)
+        }
+        var output = [CardView]()
+        for modelCard in modelCardsToRemove {
+            guard let cardView = cardView(fromModelCard: modelCard) else { continue }
+            output.append(cardView)
+        }
+        return output
+    }
     
     var selectedCards = Set<ModelCard>()
 //    var previousSelectedCards = Set<ModelCard>()
@@ -145,9 +152,18 @@ extension CardGridView {
 extension CardGridView: UIDynamicAnimatorDelegate {
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         cardBehavior.switchToSnap()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.dynamicAnimationFinished = true
-            self.setNeedsLayout()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            for cardView in self.cardViewsToRemove {
+                UIView.transition(
+                with: cardView,
+                duration: 0.5,
+                options: [.transitionFlipFromLeft],
+                animations: { cardView.modelCard = nil },
+                completion: { finished in
+                    self.dynamicAnimationFinished = true
+                    self.setNeedsLayout()
+                })
+            }
         }
     }
 }
