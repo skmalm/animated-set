@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     var deckFrameInVCContext: CGRect {
         return view.convert(deckView.frame, from: deckView)
     }
+    // I'm using the deck frame to calculate this due to IB bug where discardFrame is incorrect
     var discardFrameInVCContext: CGRect {
         return CGRect(x: deckFrameInVCContext.maxX + 10.0, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
     }

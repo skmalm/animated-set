@@ -13,13 +13,14 @@ class DynamicCardBehavior: UIDynamicBehavior {
     lazy var collisionBehavior: UICollisionBehavior = {
         let behavior = UICollisionBehavior()
         behavior.translatesReferenceBoundsIntoBoundary = true
+        behavior.collisionMode = .boundaries
         return behavior
     }()
     
     lazy var itemBehavior: UIDynamicItemBehavior = {
         let behavior = UIDynamicItemBehavior()
         behavior.allowsRotation = false
-        behavior.resistance = 0.8
+        behavior.resistance = 10.0
         return behavior
     }()
     
@@ -30,13 +31,16 @@ class DynamicCardBehavior: UIDynamicBehavior {
 //    }()
     
     func push(_ item: UIDynamicItem) {
-        let push = UIPushBehavior(items: [item], mode: .instantaneous)
+        let push = UIPushBehavior(items: [item], mode: .continuous)
         push.angle = CGFloat.random(in: 0...2*CGFloat.pi)
-        push.magnitude = 5.0
-        push.action = { [unowned push, weak self] in
-            self?.removeChildBehavior(push)
+        push.magnitude = 40.0
+        push.action = { [unowned push] in
+            push.angle += 0.1
         }
         addChildBehavior(push)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.removeChildBehavior(push)
+        }
     }
     
     func add(_ item: UIDynamicItem) {

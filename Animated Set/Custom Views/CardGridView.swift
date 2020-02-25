@@ -158,7 +158,7 @@ extension CardGridView: UIDynamicAnimatorDelegate {
                     withDuration: 0.5,
                     delay: 0.0,
                     options: [],
-                    animations: { cardView.frame.size = self.viewController.discardFrameInVCContext.size },
+                    animations: { cardView.frame.size = self.viewController.deckFrameInVCContext.size },
                     completion: {
                         if $0 == .end {
                             UIView.transition(
