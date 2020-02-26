@@ -70,6 +70,7 @@ class ViewController: UIViewController {
             return
         }
         cheatButton.isEnabled = true
+        topDeckCountLabel.text = String(game!.cardsInDeck.count)
         deckCountLabel.text = "Deck: \(game!.cardsInDeck.count)"
         multiplierLabel.text = "Multiplier: \(game!.multiplier)x"
         if cheatMode { multiplierLabel.text = "Cheat Mode" }
@@ -144,9 +145,13 @@ class ViewController: UIViewController {
         discardView.layer.cornerRadius = Constants.cornerRadius
         }}
     
+    @IBOutlet weak var newGameButton: UIButton! { didSet {
+        newGameButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        }}
     @IBOutlet private weak var cheatButton: UIButton!
     @IBOutlet private weak var multiplierLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var topDeckCountLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
         dealButton.layer.cornerRadius = Constants.cornerRadius
