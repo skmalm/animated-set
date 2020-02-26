@@ -71,6 +71,8 @@ class CardGridView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        // re-set snap point in case device was rotated
+        cardBehavior.snapPoint = CGPoint(x: viewController.discardFrameInVCContext.midX, y: viewController.discardFrameInVCContext.midY)
         guard dynamicAnimationFinished else { return }
         for subview in subviews {
             subview.removeFromSuperview()
