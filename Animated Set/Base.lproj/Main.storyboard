@@ -59,7 +59,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="81" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="yzE-UJ-bkZ" userLabel="Top Deck Count Label">
                                                         <rect key="frame" x="4" y="5.5" width="31" height="44"/>
                                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="29"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -74,8 +74,22 @@
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3O-Tj-ZM0" userLabel="Discard View">
                                                 <rect key="frame" x="49" y="0.0" width="39" height="55"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="DUx-gh-fAD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="55"/>
+                                                        <string key="text">d i s
+c a r d</string>
+                                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" name="FaceDownColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="DUx-gh-fAD" secondAttribute="trailing" id="3FY-tB-6R2"/>
+                                                    <constraint firstItem="DUx-gh-fAD" firstAttribute="top" secondItem="d3O-Tj-ZM0" secondAttribute="top" id="9yW-h5-Dnj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="DUx-gh-fAD" secondAttribute="bottom" id="GTz-uI-v0S"/>
+                                                    <constraint firstItem="DUx-gh-fAD" firstAttribute="leading" secondItem="d3O-Tj-ZM0" secondAttribute="leading" id="KCP-ot-Aiw"/>
                                                     <constraint firstAttribute="width" secondItem="d3O-Tj-ZM0" secondAttribute="height" multiplier="55:78" id="o0j-pP-fUS"/>
                                                 </constraints>
                                             </view>
