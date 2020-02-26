@@ -58,6 +58,7 @@ class CardView: UIView {
  
     init(withFrame frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = UIColor.clear
     }
     
    required init?(coder aDecoder: NSCoder) {
