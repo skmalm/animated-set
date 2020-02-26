@@ -70,7 +70,6 @@ class ViewController: UIViewController {
             return
         }
         cheatButton.isEnabled = true
-        topDeckCountLabel.text = String(game!.cardsInDeck.count)
         deckCountLabel.text = "Deck: \(game!.cardsInDeck.count)"
         multiplierLabel.text = "Multiplier: \(game!.multiplier)x"
         if cheatMode { multiplierLabel.text = "Cheat Mode" }
@@ -124,6 +123,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func pressDealButton(_ sender: UIButton) {
+        deal()
+    }
+    
+    @objc private func deal() {
         game?.dealThreeCards()
         updateUI()
     }
@@ -140,6 +143,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var deckView: UIView! { didSet {
         deckView.layer.cornerRadius = Constants.cornerRadius
+        let tap = UITapGestureRecognizer(target: self, action: #selector(deal))
+        deckView.addGestureRecognizer(tap)
         }}
     @IBOutlet weak var discardView: UIView! { didSet {
         discardView.layer.cornerRadius = Constants.cornerRadius
@@ -151,7 +156,6 @@ class ViewController: UIViewController {
     @IBOutlet private weak var cheatButton: UIButton!
     @IBOutlet private weak var multiplierLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
-    @IBOutlet private weak var topDeckCountLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
         dealButton.layer.cornerRadius = Constants.cornerRadius
