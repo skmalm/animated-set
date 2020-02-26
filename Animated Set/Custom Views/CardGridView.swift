@@ -64,6 +64,20 @@ class CardGridView: UIView {
         return output
     }
     
+    var modelCardsToAdd: Set<ModelCard> {
+        let modelCardsSet = Set(modelCards)
+        let symmetricDifference = modelCardsSet.symmetricDifference(previousModelCards)
+        let modelCardsToAdd = symmetricDifference.filter { modelCard in
+                modelCards.contains(modelCard)
+        }
+        if modelCardsToAdd.count == 3 {
+            return modelCardsToAdd
+        } else {
+            return Set<ModelCard>()
+        }
+    }
+    
+    
     var selectedCards = Set<ModelCard>()
 //    var previousSelectedCards = Set<ModelCard>()
     
@@ -96,7 +110,12 @@ class CardGridView: UIView {
         var delayTracker = 0.0
         let deckFrame = convert(viewController.deckFrameInVCContext, from: viewController.view)
         for modelCard in modelCards {
-            let cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect(origin: deckFrame.origin, size: deckFrame.size)
+            var cardFrame = CGRect.zero
+            if previousGrid == nil || modelCardsToAdd.contains(modelCard) {
+                cardFrame = CGRect(origin: deckFrame.origin, size: deckFrame.size)
+            } else {
+                cardFrame = previousGrid?[gridTracker]?.inset(by: self.insetSize) ?? CGRect.zero
+            }
             let card = CardView(withFrame: cardFrame)
             card.contentMode = .redraw
             // "face down" cards have a huge brown border covering the card
