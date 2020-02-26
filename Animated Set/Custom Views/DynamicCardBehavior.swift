@@ -27,8 +27,9 @@ class DynamicCardBehavior: UIDynamicBehavior {
     func push(_ item: UIDynamicItem) {
         let push = UIPushBehavior(items: [item], mode: .continuous)
         push.magnitude = Constants.pushMagnitudeToItemHeightRatio * item.bounds.height
+        push.angle = 0.0
         push.action = { [unowned push] in
-            push.angle += Constants.pushAngleIncrement
+            push.angle += Constants.pushAngleToItemHeightRatio / item.bounds.height
         }
         addChildBehavior(push)
         DispatchQueue.main.asyncAfter(deadline: .now() + Constants.pushRemovalDelay) {
@@ -70,8 +71,10 @@ class DynamicCardBehavior: UIDynamicBehavior {
 
 extension DynamicCardBehavior {
     private struct Constants {
+        // larger value -> more magnitude
         static let pushMagnitudeToItemHeightRatio: CGFloat = 0.25
-        static let pushAngleIncrement: CGFloat = 0.1
+        // larger value -> larger angle increment
+        static let pushAngleToItemHeightRatio: CGFloat = 15.6
         static let pushRemovalDelay: TimeInterval = 1.5
         static let itemResistance: CGFloat = 10.0
     }

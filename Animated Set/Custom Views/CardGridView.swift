@@ -56,6 +56,7 @@ class CardGridView: UIView {
                 !modelCards.contains(modelCard)
         }
         var output = [CardView]()
+        guard modelCardsToRemove.count == 3 else { return output }
         for modelCard in modelCardsToRemove {
             guard let cardView = cardView(fromModelCard: modelCard) else { continue }
             output.append(cardView)
