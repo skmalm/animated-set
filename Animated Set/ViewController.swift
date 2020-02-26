@@ -71,6 +71,9 @@ class ViewController: UIViewController {
         }
         cheatButton.isEnabled = true
         deckCountLabel.text = "Deck: \(game!.cardsInDeck.count)"
+        if game!.cardsInDeck.count == 0 {
+            deckView.alpha = 0.5
+        }
         multiplierLabel.text = "Multiplier: \(game!.multiplier)x"
         if cheatMode { multiplierLabel.text = "Cheat Mode" }
         scoreLabel.text = cheatMode ? "Score: N/A" : "Score: \(game!.score)"
