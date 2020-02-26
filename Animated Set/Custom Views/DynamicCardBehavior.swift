@@ -20,24 +20,18 @@ class DynamicCardBehavior: UIDynamicBehavior {
     lazy var itemBehavior: UIDynamicItemBehavior = {
         let behavior = UIDynamicItemBehavior()
         behavior.allowsRotation = false
-        behavior.resistance = 10.0
+        behavior.resistance = Constants.itemResistance
         return behavior
     }()
     
-//    lazy var snapBehavior: UISnapBehavior = {
-//        let behavior = UISnapBehavior()
-//        behavior.snapPoint = CGPoint(x: 0, y: 0)
-//        return behavior
-//    }()
-    
     func push(_ item: UIDynamicItem) {
         let push = UIPushBehavior(items: [item], mode: .continuous)
-        push.magnitude = 0.25 * item.bounds.height
+        push.magnitude = Constants.pushMagnitudeToItemHeightRatio * item.bounds.height
         push.action = { [unowned push] in
-            push.angle += 0.1
+            push.angle += Constants.pushAngleIncrement
         }
         addChildBehavior(push)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.pushRemovalDelay) {
             self.removeChildBehavior(push)
         }
     }
@@ -71,5 +65,14 @@ class DynamicCardBehavior: UIDynamicBehavior {
         self.init()
         animator.addBehavior(self)
         self.snapPoint = snapPoint
+    }
+}
+
+extension DynamicCardBehavior {
+    private struct Constants {
+        static let pushMagnitudeToItemHeightRatio: CGFloat = 0.25
+        static let pushAngleIncrement: CGFloat = 0.1
+        static let pushRemovalDelay: TimeInterval = 1.5
+        static let itemResistance: CGFloat = 10.0
     }
 }
