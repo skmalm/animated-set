@@ -32,8 +32,7 @@ class DynamicCardBehavior: UIDynamicBehavior {
     
     func push(_ item: UIDynamicItem) {
         let push = UIPushBehavior(items: [item], mode: .continuous)
-        push.angle = CGFloat.random(in: 0...2*CGFloat.pi)
-        push.magnitude = 40.0
+        push.magnitude = 0.25 * item.bounds.height
         push.action = { [unowned push] in
             push.angle += 0.1
         }
