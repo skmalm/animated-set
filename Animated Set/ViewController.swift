@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // slight delay for starting game allows setup to finish before animations start
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        // starting game async allows setup to finish before animations start
+        DispatchQueue.main.async {
             self.startNewGame()
         }
     }
