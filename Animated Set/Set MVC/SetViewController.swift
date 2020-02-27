@@ -166,7 +166,7 @@ class SetViewController: UIViewController {
 
 extension SetViewController {
     struct Constants {
-        static let disabledElementAlpha: CGFloat = 5.0
+        static let disabledElementAlpha: CGFloat = 0.5
         static let deckFrameToDiscardFrameDistance: CGFloat = 10.0
     }
 }
