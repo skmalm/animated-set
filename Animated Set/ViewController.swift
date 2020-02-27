@@ -16,15 +16,13 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.startNewGame()
         }
-        print(deckDiscardContainer.constraintWithIdentifier("deckDiscardDistance")?.constant ?? "failed to find deck-discard distance constraint")
     }
     
     var deckFrameInVCContext: CGRect { return view.convert(deckView.frame, from: deckView) }
     // I'm using the deck frame to calculate this due to IB bug where discardFrame is incorrect
     var discardFrameInVCContext: CGRect {
-        if let deckDiscardDistanceConstraint = deckDiscardContainer.constraintWithIdentifier("deckDiscardDistance") {
-            let deckDiscardDistanceConstant = deckDiscardDistanceConstraint.constant
-            return CGRect(x: deckFrameInVCContext.maxX + deckDiscardDistanceConstant, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
+        if let deckDiscardDistance = deckDiscardContainer.constraintConstantWithIdentifier("deckDiscardDistance") {
+            return CGRect(x: deckFrameInVCContext.maxX + deckDiscardDistance, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
         } else {
             return CGRect.zero
         }
@@ -174,10 +172,12 @@ extension ViewController {
 }
 
 extension UIView {
-    /// Returns the first constraint with the given identifier, if available.
-    ///
-    /// - Parameter identifier: The constraint identifier.
-    func constraintWithIdentifier(_ identifier: String) -> NSLayoutConstraint? {
-        return self.constraints.first { $0.identifier == identifier }
+    func constraintConstantWithIdentifier(_ identifier: String) -> CGFloat? {
+        for constraint in constraints {
+            if constraint.identifier == identifier {
+                return constraint.constant
+            }
+        }
+        return nil
     }
 }
