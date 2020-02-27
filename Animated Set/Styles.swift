@@ -16,4 +16,6 @@ struct Styles {
     static let orange: CGColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
     static let purple: CGColor = #colorLiteral(red: 0.3843137255, green: 0.1215686275, blue: 0.7019607843, alpha: 1)
     static let selectionGray: CGColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2478060788)
+    
+    static let cornerRadius: CGFloat = 6.0
 }

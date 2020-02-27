@@ -16,25 +16,30 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.startNewGame()
         }
-    }
-
-    // if user rotates device, make sure grid has updated (flipped up) available cards
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if game != nil { cardGridView.modelCards = game!.availableCards }
+        print(deckDiscardContainer.constraintWithIdentifier("deckDiscardDistance")?.constant ?? "failed to find deck-discard distance constraint")
     }
     
-    var deckFrameInVCContext: CGRect {
-        return view.convert(deckView.frame, from: deckView)
-    }
+    var deckFrameInVCContext: CGRect { return view.convert(deckView.frame, from: deckView) }
     // I'm using the deck frame to calculate this due to IB bug where discardFrame is incorrect
     var discardFrameInVCContext: CGRect {
-        return CGRect(x: deckFrameInVCContext.maxX + 10.0, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
+        if let deckDiscardDistanceConstraint = deckDiscardContainer.constraintWithIdentifier("deckDiscardDistance") {
+            let deckDiscardDistanceConstant = deckDiscardDistanceConstraint.constant
+            return CGRect(x: deckFrameInVCContext.maxX + deckDiscardDistanceConstant, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
+        } else {
+            return CGRect.zero
+        }
     }
+        
+    private var game: SetGame?
+        
+    private var cheatMode = false
     
-    @IBOutlet weak var cardGridView: CardGridView! { didSet {
-        cardGridView.viewController = self
-        }}
+    private func startNewGame() {
+        game = SetGame()
+        cheatMode = false
+        cardGridView.previousGrid = nil
+        updateUI()
+    }
     
     @objc func tapCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
         if recognizer.state == .ended {
@@ -46,23 +51,6 @@ class ViewController: UIViewController {
             updateUI()
         }
     }
-        
-    private var game: SetGame?
-    
-    // cards are identified by indices in the game.cards array
-    
-    private var cheatMode = false
-    
-    private func startNewGame() {
-        game = SetGame()
-        cheatMode = false
-        cardGridView.previousGrid = nil
-        updateUI()
-    }
-    
-    private var allCardViews: [CardView] {
-        return cardGridView.subviews as! [CardView]
-    }
     
     private func updateUI() {
         guard game != nil, game!.setAvailable() || game!.cardsInDeck.count >= 3 else {
@@ -72,7 +60,7 @@ class ViewController: UIViewController {
         cheatButton.isEnabled = true
         deckCountLabel.text = "Deck: \(game!.cardsInDeck.count)"
         if game!.cardsInDeck.count == 0 {
-            deckView.alpha = 0.5
+            deckView.alpha = Constants.disabledElementAlpha
         }
         multiplierLabel.text = "Multiplier: \(game!.multiplier)x"
         if cheatMode { multiplierLabel.text = "Cheat Mode" }
@@ -101,7 +89,7 @@ class ViewController: UIViewController {
     
     private func disableDealButton() {
         dealButton.isEnabled = false
-        dealButton.alpha = 0.3
+        dealButton.alpha = Constants.disabledElementAlpha
         dealButton.setTitle("Unable to Draw", for: .normal)
     }
     
@@ -143,17 +131,22 @@ class ViewController: UIViewController {
         cheatMode = true
         updateUI()
     }
-    
-    @IBOutlet weak var deckView: UIView! { didSet {
-        deckView.layer.cornerRadius = Constants.cornerRadius
+    private var allCardViews: [CardView] {
+        return cardGridView.subviews as! [CardView]
+    }
+    @IBOutlet private weak var cardGridView: CardGridView! { didSet {
+        cardGridView.viewController = self
+        }}
+    @IBOutlet private weak var deckView: UIView! { didSet {
+        deckView.layer.cornerRadius = Styles.cornerRadius
         let tap = UITapGestureRecognizer(target: self, action: #selector(deal))
         deckView.addGestureRecognizer(tap)
         }}
-    @IBOutlet weak var discardView: UIView! { didSet {
-        discardView.layer.cornerRadius = Constants.cornerRadius
+    @IBOutlet private weak var discardView: UIView! { didSet {
+        discardView.layer.cornerRadius = Styles.cornerRadius
         }}
     
-    @IBOutlet weak var newGameButton: UIButton! { didSet {
+    @IBOutlet private weak var newGameButton: UIButton! { didSet {
         newGameButton.titleLabel?.adjustsFontSizeToFitWidth = true
         }}
     @IBOutlet private weak var cheatButton: UIButton!
@@ -161,13 +154,30 @@ class ViewController: UIViewController {
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
-        dealButton.layer.cornerRadius = Constants.cornerRadius
+        dealButton.layer.cornerRadius = Styles.cornerRadius
         dealButton.titleLabel?.adjustsFontSizeToFitWidth = true
         }}
+    @IBOutlet weak var deckDiscardContainer: UIView!
+    
+    // if user rotates device, make sure grid has updated (flipped up) available cards
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if game != nil { cardGridView.modelCards = game!.availableCards }
+    }
 }
 
 extension ViewController {
-     struct Constants {
-        static let cornerRadius: CGFloat = 6.0
+    struct Constants {
+        static let disabledElementAlpha: CGFloat = 5.0
+        static let deckFrameToDiscardFrameDistance: CGFloat = 10.0
+    }
+}
+
+extension UIView {
+    /// Returns the first constraint with the given identifier, if available.
+    ///
+    /// - Parameter identifier: The constraint identifier.
+    func constraintWithIdentifier(_ identifier: String) -> NSLayoutConstraint? {
+        return self.constraints.first { $0.identifier == identifier }
     }
 }

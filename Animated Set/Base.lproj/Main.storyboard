@@ -98,7 +98,7 @@ c a r d</string>
                                         <constraints>
                                             <constraint firstItem="nHu-tl-CTY" firstAttribute="top" secondItem="d3O-Tj-ZM0" secondAttribute="top" id="0Na-jk-aLm"/>
                                             <constraint firstItem="d3O-Tj-ZM0" firstAttribute="width" secondItem="EiU-NI-nzb" secondAttribute="width" multiplier="0.5" constant="-5" id="0dP-tI-t8A"/>
-                                            <constraint firstItem="d3O-Tj-ZM0" firstAttribute="leading" secondItem="nHu-tl-CTY" secondAttribute="trailing" constant="10" id="Jeb-rS-Pvf"/>
+                                            <constraint firstItem="d3O-Tj-ZM0" firstAttribute="leading" secondItem="nHu-tl-CTY" secondAttribute="trailing" constant="10" identifier="deckDiscardDistance" id="Jeb-rS-Pvf"/>
                                             <constraint firstItem="d3O-Tj-ZM0" firstAttribute="height" secondItem="EiU-NI-nzb" secondAttribute="height" id="UZC-pY-H4l"/>
                                             <constraint firstItem="nHu-tl-CTY" firstAttribute="width" secondItem="EiU-NI-nzb" secondAttribute="width" multiplier="0.5" constant="-5" id="X2i-6Q-ZE7"/>
                                             <constraint firstItem="nHu-tl-CTY" firstAttribute="height" secondItem="EiU-NI-nzb" secondAttribute="height" id="bOs-0s-lq7"/>
@@ -173,6 +173,7 @@ c a r d</string>
                         <outlet property="cheatButton" destination="ERw-wY-TIa" id="ZOT-Vc-fLH"/>
                         <outlet property="dealButton" destination="ivx-f4-TaQ" id="cyV-H1-aBu"/>
                         <outlet property="deckCountLabel" destination="cj2-HZ-Ggb" id="6bj-83-yTD"/>
+                        <outlet property="deckDiscardContainer" destination="EiU-NI-nzb" id="LZ9-ch-VFG"/>
                         <outlet property="deckView" destination="nHu-tl-CTY" id="92P-d5-mtb"/>
                         <outlet property="discardView" destination="d3O-Tj-ZM0" id="O2Y-FR-nlh"/>
                         <outlet property="multiplierLabel" destination="U3S-ez-6Vt" id="2KQ-DM-ANA"/>
