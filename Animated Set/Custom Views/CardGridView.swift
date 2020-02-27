@@ -174,7 +174,7 @@ extension CardGridView {
 extension CardGridView: UIDynamicAnimatorDelegate {
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         cardBehavior.switchToSnap()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.async {
             for cardView in self.cardViewsToRemove {
                 UIViewPropertyAnimator.runningPropertyAnimator(
                     withDuration: 0.5,
