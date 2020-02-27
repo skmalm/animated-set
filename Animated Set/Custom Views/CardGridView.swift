@@ -118,8 +118,6 @@ class CardGridView: UIView {
             }
             let card = CardView(withFrame: cardFrame)
             card.contentMode = .redraw
-            // "face down" cards have a huge brown border covering the card
-            card.layer.borderColor = UIColor.brown.cgColor
             if modelCard.isFaceUp {
                 card.modelCard = modelCard
             } else {
