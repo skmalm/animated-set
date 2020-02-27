@@ -12,7 +12,7 @@ import UIKit
 class CardGridView: UIView {
     
     // Implicit unwrapping safe because property is set in controller property's didSet
-    weak var viewController: ViewController!
+    weak var viewController: SetViewController!
     
     lazy var animator: UIDynamicAnimator = {
         let animator = UIDynamicAnimator(referenceView: viewController.view)

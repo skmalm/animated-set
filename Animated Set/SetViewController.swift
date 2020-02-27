@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +164,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension SetViewController {
     struct Constants {
         static let disabledElementAlpha: CGFloat = 5.0
         static let deckFrameToDiscardFrameDistance: CGFloat = 10.0
