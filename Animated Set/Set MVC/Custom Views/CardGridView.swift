@@ -129,7 +129,7 @@ class CardGridView: UIView {
                     if !modelCard.isFaceUp {
                         UIView.transition(
                         with: card,
-                        duration: 0.5,
+                        duration: Constants.cardFlipDuration,
                         options: [.transitionFlipFromLeft],
                         animations: { card.modelCard = modelCard })
                     }
@@ -162,20 +162,6 @@ extension CGRect {
     }
 }
 
-extension CardGridView {
-    private struct Constants {
-        static let cardAspectRatio: CGFloat = 0.57
-        static let cellInsetValue: CGFloat = 4.0
-        static let selectionBorderWidth: CGFloat = 50.0
-        static let flyInDuration: TimeInterval = 0.5
-        // flyDelayIncrement controls how long new cards wait to fly in
-        static let flyDelayIncrement: TimeInterval = 0.1
-    }
-    private var insetSize: CGSize {
-        return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)
-    }
-}
-
 extension CardGridView: UIDynamicAnimatorDelegate {
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         cardBehavior.switchToSnap()
@@ -187,7 +173,7 @@ extension CardGridView: UIDynamicAnimatorDelegate {
     }
     func startSnap(for cardView: CardView) {
         UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: 0.5,
+            withDuration: Constants.resizeBeforeSnapDuration,
             delay: 0.0,
             options: [],
             animations: { cardView.frame.size = self.viewController.deckFrameInVCContext.size },
@@ -200,12 +186,28 @@ extension CardGridView: UIDynamicAnimatorDelegate {
     func flipFaceDown(_ cardView: CardView) {
         UIView.transition(
             with: cardView,
-            duration: 0.5,
+            duration: Constants.cardFlipDuration,
             options: [.transitionFlipFromLeft],
             animations: { cardView.modelCard = nil },
             completion: { finished in
                 self.dynamicAnimationFinished = true
                 self.setNeedsLayout()
         })
+    }
+}
+
+extension CardGridView {
+    private struct Constants {
+        static let cardAspectRatio: CGFloat = 0.57
+        static let cellInsetValue: CGFloat = 4.0
+        static let selectionBorderWidth: CGFloat = 50.0
+        static let flyInDuration: TimeInterval = 0.5
+        // flyDelayIncrement controls how long new cards wait to fly in
+        static let flyDelayIncrement: TimeInterval = 0.1
+        static let cardFlipDuration: TimeInterval = 0.5
+        static let resizeBeforeSnapDuration: TimeInterval = 0.5
+    }
+    private var insetSize: CGSize {
+        return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)
     }
 }
