@@ -28,6 +28,7 @@ class CardGridView: UIView {
             for cardView in cardViewsToRemove {
                 bringSubviewToFront(cardView)
                 dynamicAnimationFinished = false
+                cardView.layer.borderWidth = 0.0
                 cardBehavior.add(cardView)
                 // setNeedsLayout will be called upon animation pause
             }
