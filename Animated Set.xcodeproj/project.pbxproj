@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E98968223E9E21A00B02D59 /* Set Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* Set Styles.swift */; };
+		9E98968223E9E21A00B02D59 /* SetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* SetStyles.swift */; };
 		9E9FA1D923E486B0008FEF1C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FA1D823E486B0008FEF1C /* Grid.swift */; };
 		9EA121EB240841FE00F01E3F /* ConcetrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */; };
 		9EA121ED2408421B00F01E3F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121EC2408421B00F01E3F /* Theme.swift */; };
@@ -28,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E98968123E9E21A00B02D59 /* Set Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set Styles.swift"; sourceTree = "<group>"; };
+		9E98968123E9E21A00B02D59 /* SetStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetStyles.swift; sourceTree = "<group>"; };
 		9E9FA1D823E486B0008FEF1C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcetrationViewController.swift; sourceTree = "<group>"; };
 		9EA121EC2408421B00F01E3F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 				9EE5A54123E1F55F006E7916 /* SetViewController.swift */,
 				9ECF5B1923FDE4EC002E3006 /* Custom Views */,
 				9ECF5B1823FDE4C7002E3006 /* Set Model */,
-				9E98968123E9E21A00B02D59 /* Set Styles.swift */,
+				9E98968123E9E21A00B02D59 /* SetStyles.swift */,
 			);
 			path = "Set MVC";
 			sourceTree = "<group>";
@@ -224,7 +224,7 @@
 			files = (
 				9EE5A55923E206E0006E7916 /* CardView.swift in Sources */,
 				9EA121EF2408422C00F01E3F /* Concentration.swift in Sources */,
-				9E98968223E9E21A00B02D59 /* Set Styles.swift in Sources */,
+				9E98968223E9E21A00B02D59 /* SetStyles.swift in Sources */,
 				9EE5A54223E1F55F006E7916 /* SetViewController.swift in Sources */,
 				9EE5A53E23E1F55F006E7916 /* AppDelegate.swift in Sources */,
 				9EA121ED2408421B00F01E3F /* Theme.swift in Sources */,

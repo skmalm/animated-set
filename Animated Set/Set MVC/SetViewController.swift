@@ -65,7 +65,7 @@ class SetViewController: UIViewController {
         scoreLabel.text = cheatMode ? "Score: N/A" : "Score: \(game!.score)"
         
         cardGridView.selectedCards = game!.selectedCards
-        cardGridView.modelCards = game!.availableCards
+        cardGridView.availableModelCards = game!.availableCards
 
         // manage deal button and cheat button based on game state
         if !game!.setAvailable() {
@@ -160,7 +160,7 @@ class SetViewController: UIViewController {
     // if user rotates device, make sure grid has updated (flipped up) available cards
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        if game != nil { cardGridView.modelCards = game!.availableCards }
+        if game != nil { cardGridView.availableModelCards = game!.availableCards }
     }
 }
 
