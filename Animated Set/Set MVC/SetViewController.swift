@@ -102,12 +102,12 @@ class SetViewController: UIViewController {
         // if three cards are selected, border color depends on match
         if game!.selectedCards.count == 3 {
             if game!.selectedCardsMakeASet {
-                return Styles.translucentGreen
+                return SetStyles.translucentGreen
             } else {
-                return Styles.translucentRed
+                return SetStyles.translucentRed
             }
         } else { // border color if less than 3 cards are selected
-            return Styles.selectionGray
+            return SetStyles.selectionGray
         }
     }
     
@@ -136,12 +136,12 @@ class SetViewController: UIViewController {
         cardGridView.viewController = self
         }}
     @IBOutlet private weak var deckView: UIView! { didSet {
-        deckView.layer.cornerRadius = Styles.cornerRadius
+        deckView.layer.cornerRadius = SetStyles.cornerRadius
         let tap = UITapGestureRecognizer(target: self, action: #selector(deal))
         deckView.addGestureRecognizer(tap)
         }}
     @IBOutlet private weak var discardView: UIView! { didSet {
-        discardView.layer.cornerRadius = Styles.cornerRadius
+        discardView.layer.cornerRadius = SetStyles.cornerRadius
         }}
     
     @IBOutlet private weak var newGameButton: UIButton! { didSet {
@@ -152,7 +152,7 @@ class SetViewController: UIViewController {
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var deckCountLabel: UILabel!
     @IBOutlet private weak var dealButton: UIButton! { didSet {
-        dealButton.layer.cornerRadius = Styles.cornerRadius
+        dealButton.layer.cornerRadius = SetStyles.cornerRadius
         dealButton.titleLabel?.adjustsFontSizeToFitWidth = true
         }}
     @IBOutlet weak var deckDiscardContainer: UIView!

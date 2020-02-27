@@ -14,9 +14,9 @@ class ShapeView: UIView {
     
     private var cardColor: UIColor {
         switch modelCard.color {
-        case .color1: return UIColor(cgColor: Styles.green)
-        case .color2: return UIColor(cgColor: Styles.red)
-        case .color3: return UIColor(cgColor: Styles.purple)
+        case .color1: return UIColor(cgColor: SetStyles.green)
+        case .color2: return UIColor(cgColor: SetStyles.red)
+        case .color3: return UIColor(cgColor: SetStyles.purple)
         }
     }
     

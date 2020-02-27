@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Styles {
+struct SetStyles {
     static let green: CGColor = #colorLiteral(red: 0.373119617, green: 0.6607470677, blue: 0.1971348636, alpha: 1)
     static let translucentGreen: CGColor = #colorLiteral(red: 0.373119617, green: 0.6607470677, blue: 0.1971348636, alpha: 0.2531838613)
     static let red: CGColor = #colorLiteral(red: 0.7176470588, green: 0.08235294118, blue: 0.003921568627, alpha: 1)

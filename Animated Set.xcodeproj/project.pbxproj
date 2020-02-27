@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E98968223E9E21A00B02D59 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* Styles.swift */; };
+		9E98968223E9E21A00B02D59 /* Set Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* Set Styles.swift */; };
 		9E9FA1D923E486B0008FEF1C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FA1D823E486B0008FEF1C /* Grid.swift */; };
+		9EA121EB240841FE00F01E3F /* ConcetrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */; };
+		9EA121ED2408421B00F01E3F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121EC2408421B00F01E3F /* Theme.swift */; };
+		9EA121EF2408422C00F01E3F /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121EE2408422C00F01E3F /* Concentration.swift */; };
+		9EA121F12408423B00F01E3F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121F02408423B00F01E3F /* Card.swift */; };
 		9EC25C1424047E3000E11FDD /* DynamicCardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC25C1324047E3000E11FDD /* DynamicCardBehavior.swift */; };
 		9EE5A53E23E1F55F006E7916 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE5A53D23E1F55F006E7916 /* AppDelegate.swift */; };
 		9EE5A54023E1F55F006E7916 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE5A53F23E1F55F006E7916 /* SceneDelegate.swift */; };
@@ -24,8 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E98968123E9E21A00B02D59 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		9E98968123E9E21A00B02D59 /* Set Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set Styles.swift"; sourceTree = "<group>"; };
 		9E9FA1D823E486B0008FEF1C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcetrationViewController.swift; sourceTree = "<group>"; };
+		9EA121EC2408421B00F01E3F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9EA121EE2408422C00F01E3F /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		9EA121F02408423B00F01E3F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		9EC25C1324047E3000E11FDD /* DynamicCardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCardBehavior.swift; sourceTree = "<group>"; };
 		9EE5A53A23E1F55F006E7916 /* Animated Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animated Set.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE5A53D23E1F55F006E7916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,14 +61,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9ECF5B1823FDE4C7002E3006 /* Model */ = {
+		9EA121E82408418B00F01E3F /* Set MVC */ = {
+			isa = PBXGroup;
+			children = (
+				9EE5A54123E1F55F006E7916 /* SetViewController.swift */,
+				9ECF5B1923FDE4EC002E3006 /* Custom Views */,
+				9ECF5B1823FDE4C7002E3006 /* Set Model */,
+				9E98968123E9E21A00B02D59 /* Set Styles.swift */,
+			);
+			path = "Set MVC";
+			sourceTree = "<group>";
+		};
+		9EA121E9240841AF00F01E3F /* Concentration MVC */ = {
+			isa = PBXGroup;
+			children = (
+				9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */,
+				9EA121F22408469300F01E3F /* Concentration Model */,
+			);
+			path = "Concentration MVC";
+			sourceTree = "<group>";
+		};
+		9EA121F22408469300F01E3F /* Concentration Model */ = {
+			isa = PBXGroup;
+			children = (
+				9EA121EC2408421B00F01E3F /* Theme.swift */,
+				9EA121EE2408422C00F01E3F /* Concentration.swift */,
+				9EA121F02408423B00F01E3F /* Card.swift */,
+			);
+			path = "Concentration Model";
+			sourceTree = "<group>";
+		};
+		9ECF5B1823FDE4C7002E3006 /* Set Model */ = {
 			isa = PBXGroup;
 			children = (
 				9EE5A55223E1F5C0006E7916 /* ModelCard.swift */,
 				9EE5A55423E1F5D0006E7916 /* SetGame.swift */,
 				9E9FA1D823E486B0008FEF1C /* Grid.swift */,
 			);
-			path = Model;
+			path = "Set Model";
 			sourceTree = "<group>";
 		};
 		9ECF5B1923FDE4EC002E3006 /* Custom Views */ = {
@@ -93,11 +131,9 @@
 		9EE5A53C23E1F55F006E7916 /* Animated Set */ = {
 			isa = PBXGroup;
 			children = (
-				9EE5A54123E1F55F006E7916 /* SetViewController.swift */,
-				9ECF5B1923FDE4EC002E3006 /* Custom Views */,
-				9ECF5B1823FDE4C7002E3006 /* Model */,
 				9EE5A54323E1F55F006E7916 /* Main.storyboard */,
-				9E98968123E9E21A00B02D59 /* Styles.swift */,
+				9EA121E9240841AF00F01E3F /* Concentration MVC */,
+				9EA121E82408418B00F01E3F /* Set MVC */,
 				9EE5A54823E1F562006E7916 /* LaunchScreen.storyboard */,
 				9EE5A54623E1F562006E7916 /* Assets.xcassets */,
 				9EE5A54B23E1F562006E7916 /* Info.plist */,
@@ -187,11 +223,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EE5A55923E206E0006E7916 /* CardView.swift in Sources */,
-				9E98968223E9E21A00B02D59 /* Styles.swift in Sources */,
+				9EA121EF2408422C00F01E3F /* Concentration.swift in Sources */,
+				9E98968223E9E21A00B02D59 /* Set Styles.swift in Sources */,
 				9EE5A54223E1F55F006E7916 /* SetViewController.swift in Sources */,
 				9EE5A53E23E1F55F006E7916 /* AppDelegate.swift in Sources */,
+				9EA121ED2408421B00F01E3F /* Theme.swift in Sources */,
 				9EE5A55523E1F5D0006E7916 /* SetGame.swift in Sources */,
+				9EA121F12408423B00F01E3F /* Card.swift in Sources */,
 				9EE5A54023E1F55F006E7916 /* SceneDelegate.swift in Sources */,
+				9EA121EB240841FE00F01E3F /* ConcetrationViewController.swift in Sources */,
 				9EED355D23E3574F0083A866 /* ShapeView.swift in Sources */,
 				9EE5A55723E1FFF6006E7916 /* CardGridView.swift in Sources */,
 				9EE5A55323E1F5C0006E7916 /* ModelCard.swift in Sources */,
