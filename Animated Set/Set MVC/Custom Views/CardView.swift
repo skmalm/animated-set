@@ -11,12 +11,14 @@ import UIKit
 //@IBDesignable
 class CardView: UIView {
     
+    var modelCard: ModelCard? { didSet { setNeedsDisplay(); setNeedsLayout() }}
+    
     override func draw(_ rect: CGRect) {
 
         // generate and draw card background
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: SetStyles.cornerRadius)
         roundedRect.addClip()
-        // if modelCard is nil, card is face down and should be brown
+        // if modelCard is nil, card is face down
         if modelCard == nil {
             UIColor(named: "FaceDownColor")?.setFill()
         } else {
@@ -24,8 +26,6 @@ class CardView: UIView {
         }
         roundedRect.fill()
     }
-    
-    var modelCard: ModelCard? { didSet { setNeedsDisplay(); setNeedsLayout() }}
     
     override func layoutSubviews() {
         super.layoutSubviews()
