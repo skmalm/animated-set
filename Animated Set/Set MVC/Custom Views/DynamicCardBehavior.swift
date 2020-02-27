@@ -10,21 +10,21 @@ import UIKit
 
 class DynamicCardBehavior: UIDynamicBehavior {
     
-    lazy var collisionBehavior: UICollisionBehavior = {
+    lazy private var collisionBehavior: UICollisionBehavior = {
         let behavior = UICollisionBehavior()
         behavior.translatesReferenceBoundsIntoBoundary = true
         behavior.collisionMode = .boundaries
         return behavior
     }()
     
-    lazy var itemBehavior: UIDynamicItemBehavior = {
+    lazy private var itemBehavior: UIDynamicItemBehavior = {
         let behavior = UIDynamicItemBehavior()
         behavior.allowsRotation = false
         behavior.resistance = Constants.itemResistance
         return behavior
     }()
     
-    func push(_ item: UIDynamicItem) {
+    private func push(_ item: UIDynamicItem) {
         let push = UIPushBehavior(items: [item], mode: .continuous)
         push.magnitude = Constants.pushMagnitudeToItemHeightRatio * item.bounds.height
         push.angle = 0.0
