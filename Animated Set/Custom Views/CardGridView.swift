@@ -14,15 +14,17 @@ class CardGridView: UIView {
     // Implicit unwrapping safe because property is set in controller property's didSet
     weak var viewController: ViewController!
     
-    lazy var animator = UIDynamicAnimator(referenceView: viewController.view)
+    lazy var animator: UIDynamicAnimator = {
+        let animator = UIDynamicAnimator(referenceView: viewController.view)
+        animator.delegate = self
+        return animator
+    }()
     
     var dynamicAnimationFinished = true
     
     lazy var cardBehavior = DynamicCardBehavior(inAnimator: animator, withSnapPoint: CGPoint(x: viewController.discardFrameInVCContext.midX, y: viewController.discardFrameInVCContext.midY))
     
     var modelCards = [ModelCard]() { didSet {
-        // TEMP; THERE MUST BE A BETTER PLACE TO SET THE DELEGATE
-        animator.delegate = self
         previousModelCards = Set(oldValue)
         if !cardViewsToRemove.isEmpty {
             for cardView in cardViewsToRemove {
