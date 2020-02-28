@@ -13,6 +13,7 @@ class CardGridView: UIView {
     
     // Implicit unwrapping safe because property is set in controller property's didSet
     weak var viewController: SetViewController!
+    weak var delegate: CardGridViewDelegate?
     
     lazy private var animator: UIDynamicAnimator = {
         let animator = UIDynamicAnimator(referenceView: viewController.view)
@@ -31,6 +32,8 @@ class CardGridView: UIView {
                 bringSubviewToFront(cardView)
                 dynamicAnimationFinished = false
                 cardView.layer.borderWidth = 0.0
+                // BREAKS MVC
+                delegate?.dynamicAnimationDidStart(self)
                 cardBehavior.add(cardView)
                 // setNeedsLayout will be called upon animation pause
             }
@@ -191,6 +194,7 @@ extension CardGridView: UIDynamicAnimatorDelegate {
             animations: { cardView.modelCard = nil },
             completion: { finished in
                 self.dynamicAnimationFinished = true
+                self.delegate?.dynamicAnimationDidFinish(self)
                 self.setNeedsLayout()
         })
     }
@@ -210,4 +214,9 @@ extension CardGridView {
     private var insetSize: CGSize {
         return CGSize(width: Constants.cellInsetValue, height: Constants.cellInsetValue)
     }
+}
+
+protocol CardGridViewDelegate: AnyObject {
+    func dynamicAnimationDidStart(_ cardGridView: CardGridView)
+    func dynamicAnimationDidFinish(_ cardGridView: CardGridView)
 }

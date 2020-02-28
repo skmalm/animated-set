@@ -72,15 +72,18 @@ class SetViewController: UIViewController {
             dealButton.setTitle("No Sets. Free Draw!", for: .normal)
             cheatButton.isEnabled = false
         } else if game!.selectedCardsMakeASet {
-            dealButton.setTitle("Replace Matched Set", for: .normal)
+            if game!.cardsInDeck.count >= 3 {
+                dealButton.setTitle("Replace Matched Set", for: .normal)
+            } else {
+                dealButton.setTitle("Remove Matched Set", for: .normal)
+            }
+            
         } else {
             dealButton.setTitle("Deal 3 & Reduce Multiplier", for: .normal)
         }
         if game!.selectedCardsMakeASet || game!.cardsInDeck.count >= 3 {
             enableDealButton()
         } else { disableDealButton() }
-        // if no cards left in deck, disable deal button
-        if game!.cardsInDeck.count < 3 { disableDealButton() }
         cardGridView.borderColor = borderColor()
         game!.flipAllAvailableCardsFaceUp()
     }
@@ -134,6 +137,7 @@ class SetViewController: UIViewController {
     }
     @IBOutlet private weak var cardGridView: CardGridView! { didSet {
         cardGridView.viewController = self
+        cardGridView.delegate = self
         }}
     @IBOutlet private weak var deckView: UIView! { didSet {
         deckView.layer.cornerRadius = SetStyles.cornerRadius
@@ -162,6 +166,18 @@ class SetViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         if game != nil { cardGridView.availableModelCards = game!.availableCards }
     }
+}
+
+extension SetViewController: CardGridViewDelegate {
+    func dynamicAnimationDidStart(_ cardGridView: CardGridView) {
+        view.isUserInteractionEnabled = false
+    }
+    
+    func dynamicAnimationDidFinish(_ cardGridView: CardGridView) {
+        view.isUserInteractionEnabled = true
+    }
+    
+    
 }
 
 extension SetViewController {
