@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E6D479524096143005D541D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9E6D479424096143005D541D /* README.md */; };
+		9E6D47972409637A005D541D /* ConcentrationThemeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D47962409637A005D541D /* ConcentrationThemeChooserViewController.swift */; };
 		9E98968223E9E21A00B02D59 /* SetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* SetStyles.swift */; };
 		9E9FA1D923E486B0008FEF1C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FA1D823E486B0008FEF1C /* Grid.swift */; };
 		9EA121EB240841FE00F01E3F /* ConcetrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		9E6D479424096143005D541D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9E6D47962409637A005D541D /* ConcentrationThemeChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationThemeChooserViewController.swift; sourceTree = "<group>"; };
 		9E98968123E9E21A00B02D59 /* SetStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetStyles.swift; sourceTree = "<group>"; };
 		9E9FA1D823E486B0008FEF1C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcetrationViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E6D479824096388005D541D /* Concentration Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9E6D47962409637A005D541D /* ConcentrationThemeChooserViewController.swift */,
+				9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */,
+			);
+			path = "Concentration Controllers";
+			sourceTree = "<group>";
+		};
 		9EA121E82408418B00F01E3F /* Set MVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +88,7 @@
 		9EA121E9240841AF00F01E3F /* Concentration MVC */ = {
 			isa = PBXGroup;
 			children = (
-				9EA121EA240841FE00F01E3F /* ConcetrationViewController.swift */,
+				9E6D479824096388005D541D /* Concentration Controllers */,
 				9EA121F22408469300F01E3F /* Concentration Model */,
 			);
 			path = "Concentration MVC";
@@ -230,6 +241,7 @@
 				9EA121EF2408422C00F01E3F /* Concentration.swift in Sources */,
 				9E98968223E9E21A00B02D59 /* SetStyles.swift in Sources */,
 				9EE5A54223E1F55F006E7916 /* SetViewController.swift in Sources */,
+				9E6D47972409637A005D541D /* ConcentrationThemeChooserViewController.swift in Sources */,
 				9EE5A53E23E1F55F006E7916 /* AppDelegate.swift in Sources */,
 				9EA121ED2408421B00F01E3F /* Theme.swift in Sources */,
 				9EE5A55523E1F5D0006E7916 /* SetGame.swift in Sources */,
