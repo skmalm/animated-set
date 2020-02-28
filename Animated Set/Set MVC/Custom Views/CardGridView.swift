@@ -11,19 +11,21 @@ import UIKit
 //@IBDesignable
 class CardGridView: UIView {
     
-    // Implicit unwrapping safe because property is set in controller property's didSet
-    weak var viewController: SetViewController!
     weak var delegate: CardGridViewDelegate?
     
     lazy private var animator: UIDynamicAnimator = {
-        let animator = UIDynamicAnimator(referenceView: viewController.view)
+        assert(delegate != nil, "Nil delegate; unable to set animator reference view")
+        let animator = UIDynamicAnimator(referenceView: delegate!.contextViewForDelegate)
         animator.delegate = self
         return animator
     }()
     
     private var dynamicAnimationFinished = true
     
-    lazy private var cardBehavior = DynamicCardBehavior(inAnimator: animator, withSnapPoint: CGPoint(x: viewController.discardFrameInVCContext.midX, y: viewController.discardFrameInVCContext.midY))
+    lazy private var cardBehavior: DynamicCardBehavior = {
+        assert(delegate != nil, "Nil delegate, cannot set dynamic card behavior")
+        return DynamicCardBehavior(inAnimator: animator, withSnapPoint: CGPoint(x: delegate!.discardFrameInVCContext.midX, y: delegate!.discardFrameInVCContext.midY))
+    }()
     
     var availableModelCards = [ModelCard]() { didSet {
         previousModelCards = Set(oldValue)
@@ -82,14 +84,18 @@ class CardGridView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         // re-set snap point in case device was rotated
-        cardBehavior.snapPoint = CGPoint(x: viewController.discardFrameInVCContext.midX, y: viewController.discardFrameInVCContext.midY)
+        if delegate != nil {
+            cardBehavior.snapPoint = CGPoint(x: delegate!.discardFrameInVCContext.midX, y: delegate!.discardFrameInVCContext.midY)
+        }
+        
         guard dynamicAnimationFinished else { return }
         for subview in subviews {
             subview.removeFromSuperview()
         }
         generateViewCards()
         for subview in subviews {
-            let tap = UITapGestureRecognizer(target: viewController, action: #selector(viewController.tapCard(byHandlingGestureRecognizedBy:)))
+            assert(delegate != nil, "Nil delegate, unable to set tap gestures")
+            let tap = UITapGestureRecognizer(target: delegate!.contextVCForDelegate, action: #selector(delegate!.contextVCForDelegate.tapCard(byHandlingGestureRecognizedBy:)))
             subview.addGestureRecognizer(tap)
         }
     }
@@ -103,7 +109,7 @@ class CardGridView: UIView {
         var gridTracker = 0
         // delayTracker increases after facedown card appears, allowing cards to be drawn one at a time
         var delayTracker = 0.0
-        let deckFrame = convert(viewController.deckFrameInVCContext, from: viewController.view)
+        let deckFrame = delegate != nil ? convert(delegate!.deckFrameInVCContext, from: delegate!.contextViewForDelegate) : CGRect.zero
         for modelCard in availableModelCards {
             var cardFrame = CGRect.zero
             // if no previous grid or if card is newly added, it should initially be at deck location
@@ -179,7 +185,7 @@ extension CardGridView: UIDynamicAnimatorDelegate {
             withDuration: Constants.resizeBeforeSnapDuration,
             delay: 0.0,
             options: [],
-            animations: { cardView.frame.size = self.viewController.deckFrameInVCContext.size },
+            animations: { cardView.frame.size = self.delegate?.deckFrameInVCContext.size ?? CGSize.zero },
             completion: {
                 if $0 == .end {
                     self.flipFaceDown(cardView)
@@ -217,6 +223,10 @@ extension CardGridView {
 }
 
 protocol CardGridViewDelegate: AnyObject {
+    var contextVCForDelegate: SetViewController { get }
+    var contextViewForDelegate: UIView { get }
+    var deckFrameInVCContext: CGRect { get }
+    var discardFrameInVCContext: CGRect { get }
     func dynamicAnimationDidStart(_ cardGridView: CardGridView)
     func dynamicAnimationDidFinish(_ cardGridView: CardGridView)
 }

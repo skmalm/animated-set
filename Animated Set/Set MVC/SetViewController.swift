@@ -17,16 +17,6 @@ class SetViewController: UIViewController {
             self.startNewGame()
         }
     }
-    
-    var deckFrameInVCContext: CGRect { return view.convert(deckView.frame, from: deckView) }
-    // I'm using the deck frame to calculate this due to IB bug where discardFrame is incorrect
-    var discardFrameInVCContext: CGRect {
-        if let deckDiscardDistance = deckDiscardContainer.constraintConstantWithIdentifier("deckDiscardDistance") {
-            return CGRect(x: deckFrameInVCContext.maxX + deckDiscardDistance, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
-        } else {
-            return CGRect.zero
-        }
-    }
         
     private var game: SetGame?
         
@@ -136,7 +126,6 @@ class SetViewController: UIViewController {
         return cardGridView.subviews as! [CardView]
     }
     @IBOutlet private weak var cardGridView: CardGridView! { didSet {
-        cardGridView.viewController = self
         cardGridView.delegate = self
         }}
     @IBOutlet private weak var deckView: UIView! { didSet {
@@ -169,6 +158,19 @@ class SetViewController: UIViewController {
 }
 
 extension SetViewController: CardGridViewDelegate {
+    var contextVCForDelegate: SetViewController { self }
+    
+    var contextViewForDelegate: UIView { view }
+    
+    var deckFrameInVCContext: CGRect { return view.convert(deckView.frame, from: deckView) }
+    // I'm using the deck frame to calculate this due to IB bug where discardFrame is incorrect
+    var discardFrameInVCContext: CGRect {
+        if let deckDiscardDistance = deckDiscardContainer.constraintConstantWithIdentifier("deckDiscardDistance") {
+            return CGRect(x: deckFrameInVCContext.maxX + deckDiscardDistance, y: deckFrameInVCContext.minY, width: deckFrameInVCContext.width, height: deckFrameInVCContext.height)
+        } else {
+            return CGRect.zero
+        }
+    }
     func dynamicAnimationDidStart(_ cardGridView: CardGridView) {
         view.isUserInteractionEnabled = false
     }
