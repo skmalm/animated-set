@@ -10,15 +10,18 @@ import UIKit
 
 class ConcentrationThemeChooserViewController: UIViewController {
 
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        assert(segue.identifier == "showTheme", "Illegal segue from theme chooser to Concentration game")
+        if let view = sender as? UIView {
+            if let cvc = segue.destination as? ConcentrationViewController {
+                if let theme = Themes.themes[view.tag] {
+                    cvc.theme = theme
+                }
+            }
+        }
     }
-    */
+    
 
 }

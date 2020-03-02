@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E6986DC240D9F0000050E5B /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6986DB240D9F0000050E5B /* Themes.swift */; };
 		9E6D479524096143005D541D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9E6D479424096143005D541D /* README.md */; };
 		9E6D47972409637A005D541D /* ConcentrationThemeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6D47962409637A005D541D /* ConcentrationThemeChooserViewController.swift */; };
 		9E98968223E9E21A00B02D59 /* SetStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E98968123E9E21A00B02D59 /* SetStyles.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E6986DB240D9F0000050E5B /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		9E6D479424096143005D541D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9E6D47962409637A005D541D /* ConcentrationThemeChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationThemeChooserViewController.swift; sourceTree = "<group>"; };
 		9E98968123E9E21A00B02D59 /* SetStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetStyles.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				9EA121EC2408421B00F01E3F /* Theme.swift */,
 				9EA121EE2408422C00F01E3F /* Concentration.swift */,
 				9EA121F02408423B00F01E3F /* Card.swift */,
+				9E6986DB240D9F0000050E5B /* Themes.swift */,
 			);
 			path = "Concentration Model";
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E6986DC240D9F0000050E5B /* Themes.swift in Sources */,
 				9EE5A55923E206E0006E7916 /* CardView.swift in Sources */,
 				9EA121EF2408422C00F01E3F /* Concentration.swift in Sources */,
 				9E98968223E9E21A00B02D59 /* SetStyles.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConcentrationViewController: UIViewController {
 
     // need timers for both model and controller because model logic is time based and also view needs to update every second to show elapsed time and time-based score changes
     private var timer: Timer?
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
 
     private var game: Concentration!
-    private var theme: Theme!
+    var theme: Theme!
     
     @IBOutlet private weak var themeLabel: UILabel!
     @IBOutlet private weak var flipCountLabel: UILabel!
@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         timeLabel.text = "Time: 0"
         newGameButton.setTitle("New Game", for: .normal)
         emoji.removeAll()
-        theme = getNewTheme()
         themeLabel.text = theme.name
         self.view.backgroundColor = theme.backgroundColor
         gameEmojis = theme.emojis
@@ -60,10 +59,6 @@ class ViewController: UIViewController {
         guard let viewCardIndex = cardButtons.firstIndex(of: sender) else { return }
         game.chooseCard(at: viewCardIndex)
         updateViewFromModel()
-    }
-    
-    private func getNewTheme() -> Theme {
-        return themes.randomElement()!
     }
     
     private var emoji = [Card: String]()
@@ -98,22 +93,5 @@ class ViewController: UIViewController {
             timer?.invalidate()
         }
     }
-    
-    private let themes: [Theme] = [
-        Theme(name: "Halloween!", backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), cardColor: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1),
-              emojis: ["🎃", "👻", "🦇", "😱", "😈", "🍭", "🍬", "🍎", "🙀"]),
-        Theme(name: "Animals!", backgroundColor: #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1), cardColor: #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1),
-              emojis: ["🦆", "🐌", "🦋", "🐍", "🦑", "🐆", "🐇", "🐿"]),
-        Theme(name: "Food!", backgroundColor: #colorLiteral(red: 0.1921568662, green: 0.007843137719, blue: 0.09019608051, alpha: 1), cardColor: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1),
-              emojis: ["🍉", "🥑", "🥓", "🥗", "🍣", "🍿", "🍪", "🌮"]),
-        Theme(name: "Sports!", backgroundColor: #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1), cardColor: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1),
-              emojis: ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🎱"]),
-        Theme(name: "People!", backgroundColor: #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1), cardColor: #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1),
-              emojis: ["👩‍🎤", "👨‍🍳", "👩‍🌾", "👮‍♂️", "🧙‍♀️", "🧟", "🤶", "🤴"]),
-        Theme(name: "Places!", backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), cardColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),
-              emojis: ["🌋", "⛰", "🏝", "🏜", "🗻", "🏰", "🏯", "🏟"]),
-        Theme(name: "Meg!", backgroundColor: #colorLiteral(red: 0.1921568662, green: 0.007843137719, blue: 0.09019608051, alpha: 1), cardColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),
-              emojis: ["🐈", "🐐", "💃🏻", "📚", "📝", "❄️", "🍁", "🧚‍♀️"]),
-    ]
     
 }

@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 struct Theme {
-    static var identifierTracker = 0
+    static var identifierTracker = 1
     let identifier: Int
     let name: String
     let backgroundColor: UIColor
