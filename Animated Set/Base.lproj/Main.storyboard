@@ -168,7 +168,7 @@ c a r d</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Set" image="suit.diamond" catalog="system" selectedImage="suit.diamond" id="8Yy-kW-IBJ"/>
+                    <tabBarItem key="tabBarItem" title="Set" image="suit.diamond" catalog="system" selectedImage="suit.diamond.fill" id="8Yy-kW-IBJ"/>
                     <connections>
                         <outlet property="cardGridView" destination="qHS-VK-f9J" id="10c-B4-AvM"/>
                         <outlet property="cheatButton" destination="ERw-wY-TIa" id="ZOT-Vc-fLH"/>
@@ -220,11 +220,11 @@ c a r d</string>
             </objects>
             <point key="canvasLocation" x="-279" y="957"/>
         </scene>
-        <!--Item-->
+        <!--Concentration-->
         <scene sceneID="wCS-jD-2zd">
             <objects>
                 <splitViewController id="yuz-sL-WAj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3kJ-JK-Gth"/>
+                    <tabBarItem key="tabBarItem" title="Concentration" image="questionmark.circle" catalog="system" selectedImage="questionmark.circle.fill" id="3kJ-JK-Gth"/>
                     <connections>
                         <segue destination="pfv-1e-DIC" kind="relationship" relationship="masterViewController" id="AnG-gM-5Fl"/>
                         <segue destination="m0u-Oc-JaK" kind="relationship" relationship="detailViewController" id="Svz-A5-azz"/>
@@ -600,12 +600,15 @@ c a r d</string>
         </scene>
     </scenes>
     <resources>
+        <image name="questionmark.circle" catalog="system" width="64" height="60"/>
+        <image name="questionmark.circle.fill" catalog="system" width="64" height="60"/>
         <image name="suit.diamond" catalog="system" width="52" height="64"/>
+        <image name="suit.diamond.fill" catalog="system" width="52" height="64"/>
         <namedColor name="FaceDownColor">
             <color red="0.71799999475479126" green="0.082999996840953827" blue="0.004999999888241291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1qA-Hy-H1E"/>
+        <segue reference="Svz-A5-azz"/>
     </inferredMetricsTieBreakers>
 </document>
