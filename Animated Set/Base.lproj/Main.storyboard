@@ -343,7 +343,9 @@ c a r d</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f3n-dl-ydT"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mH5-sc-So1"/>
+                    <navigationItem key="navigationItem" id="mH5-sc-So1">
+                        <barButtonItem key="backBarButtonItem" title="Themes" id="iwT-wb-e5Q"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="VDL-h9-ewh"/>
                     </connections>
