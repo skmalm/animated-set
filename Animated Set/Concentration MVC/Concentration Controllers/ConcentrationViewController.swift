@@ -22,7 +22,7 @@ class ConcentrationViewController: UIViewController {
 
     private var game: Concentration!
     // Currently using theme 1 as default theme
-    var theme = Themes.themes[1]!
+    var theme = Themes.themes[1]! { didSet { setTheme(); updateViewFromModel() }}
     
     @IBOutlet private weak var themeLabel: UILabel!
     @IBOutlet private weak var flipCountLabel: UILabel!
@@ -43,12 +43,16 @@ class ConcentrationViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timerActions), userInfo: nil, repeats: true)
         timeLabel.text = "Time: 0"
         newGameButton.setTitle("New Game", for: .normal)
+        game.startNewGame(numberOfPairsOfCards: cardButtons.count / 2)
+        setTheme()
+        updateViewFromModel()
+    }
+    
+    private func setTheme() {
         emoji.removeAll()
         themeLabel.text = theme.name
-        self.view.backgroundColor = theme.backgroundColor
+        view.backgroundColor = theme.backgroundColor
         gameEmojis = theme.emojis
-        game.startNewGame(numberOfPairsOfCards: cardButtons.count / 2)
-        updateViewFromModel()
     }
     
     @objc private func timerActions() {

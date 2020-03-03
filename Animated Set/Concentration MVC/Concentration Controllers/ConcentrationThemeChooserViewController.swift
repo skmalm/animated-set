@@ -10,6 +10,24 @@ import UIKit
 
 class ConcentrationThemeChooserViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    private var splitViewDetailConcentrationViewController: ConcentrationViewController? {
+        return splitViewController?.viewControllers.last as? ConcentrationViewController
+    }
+    
+    // MARK: - Methods
+    
+    @IBAction func themeButtonPressed(_ sender: UIButton) {
+        if let cvc = splitViewDetailConcentrationViewController {
+            if let theme = Themes.themes[sender.tag] {
+                cvc.theme = theme
+            }
+        } else {
+            performSegue(withIdentifier: "showTheme", sender: sender)
+        }
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

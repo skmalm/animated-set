@@ -202,7 +202,7 @@ c a r d</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXP-0e-sxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1184" y="418"/>
+            <point key="canvasLocation" x="-1041" y="126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fXO-J6-j6v">
@@ -218,7 +218,7 @@ c a r d</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYl-vv-Vgr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-279" y="957"/>
+            <point key="canvasLocation" x="-159" y="957"/>
         </scene>
         <!--Concentration-->
         <scene sceneID="wCS-jD-2zd">
@@ -260,7 +260,7 @@ c a r d</string>
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="rZu-LJ-owX"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="EeU-sd-SEn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1C-5M-h9L">
@@ -271,7 +271,7 @@ c a r d</string>
                                             <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="MZK-79-rWW"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="30S-qy-fX2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9L-zU-rX8">
@@ -282,7 +282,7 @@ c a r d</string>
                                             <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="ncF-Rj-3FZ"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="NNz-9T-TQq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNw-ha-Ftn">
@@ -293,7 +293,7 @@ c a r d</string>
                                             <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="hiD-ba-W2M"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="uhg-hR-aq0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ef-qJ-RFE">
@@ -304,7 +304,7 @@ c a r d</string>
                                             <color key="titleColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="K9v-8M-gLN"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="ayP-lo-vtC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fK-37-SaD">
@@ -315,7 +315,7 @@ c a r d</string>
                                             <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="VLW-Wn-eQ5"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="Tp1-Vv-KSb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdq-7Y-xKH">
@@ -326,7 +326,7 @@ c a r d</string>
                                             <color key="titleColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="1qA-Hy-H1E"/>
+                                            <action selector="themeButtonPressed:" destination="GuA-FW-NH8" eventType="touchUpInside" id="Hao-XK-irF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -344,6 +344,9 @@ c a r d</string>
                         <viewLayoutGuide key="safeArea" id="f3n-dl-ydT"/>
                     </view>
                     <navigationItem key="navigationItem" id="mH5-sc-So1"/>
+                    <connections>
+                        <segue destination="m0u-Oc-JaK" kind="showDetail" identifier="showTheme" id="VDL-h9-ewh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rys-Fo-mnv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -596,7 +599,7 @@ c a r d</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERX-V0-f0p" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653" y="1759"/>
+            <point key="canvasLocation" x="653" y="1789"/>
         </scene>
     </scenes>
     <resources>
@@ -609,6 +612,6 @@ c a r d</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Svz-A5-azz"/>
+        <segue reference="VDL-h9-ewh"/>
     </inferredMetricsTieBreakers>
 </document>
