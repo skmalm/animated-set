@@ -21,7 +21,8 @@ class ConcentrationViewController: UIViewController {
     }
 
     private var game: Concentration!
-    var theme: Theme!
+    // Currently using theme 1 as default theme
+    var theme = Themes.themes[1]!
     
     @IBOutlet private weak var themeLabel: UILabel!
     @IBOutlet private weak var flipCountLabel: UILabel!
