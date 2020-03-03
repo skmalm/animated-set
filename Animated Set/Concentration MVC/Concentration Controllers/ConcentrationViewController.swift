@@ -24,7 +24,7 @@ class ConcentrationViewController: UIViewController {
     // Currently using theme 1 as default theme
     var theme = Themes.themes[1]! { didSet { setTheme(); updateViewFromModel() }}
     
-    @IBOutlet private weak var themeLabel: UILabel!
+    @IBOutlet private weak var themeLabel: UILabel! { didSet { themeLabel.text = theme.name }}
     @IBOutlet private weak var flipCountLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
@@ -34,9 +34,7 @@ class ConcentrationViewController: UIViewController {
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
         startNewGame()
     }
-    
-    // MARK: UI Methods
-    
+        
     private func startNewGame() {
         timer?.invalidate()
         // brief timer interval means displayed time is only 0.1s off of actual elapsed time
@@ -50,7 +48,6 @@ class ConcentrationViewController: UIViewController {
     
     private func setTheme() {
         emoji.removeAll()
-        themeLabel.text = theme.name
         view.backgroundColor = theme.backgroundColor
         gameEmojis = theme.emojis
     }
