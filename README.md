@@ -9,6 +9,8 @@ The only external tool I'm using is the Grid utility created by the instructor (
 
 ## Known Issues
 
+Rotating the device during Set animation breaks the Set game (probably need to override viewWillTransition to fix this).
+
 If a mixed splitview device is rotated from landscape to portrait while a Concentration game is being played, the game goes back to the theme chooser screen.
 
 ## Possible Improvements
