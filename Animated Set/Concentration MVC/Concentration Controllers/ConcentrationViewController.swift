@@ -16,15 +16,22 @@ class ConcentrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         game = Concentration(numberOfPairsOfCards: cardButtons.count / 2)
-        startNewGame()
-        // TODO: game.startNewGame(numberOfPairsOfCards:) runs twice; once upon game's initialization and then again when the controller's startNewGame() function is run. Consider fixing this for app efficiency (cards are generated, removed, then generated again)
     }
 
+    var concentrationGameStarted = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if !concentrationGameStarted {
+            startNewGame()
+            concentrationGameStarted = true
+        }
+    }
+    
     private var game: Concentration!
     // Currently using theme 1 as default theme
     var theme = Themes.themes[1]! { didSet { setTheme(); updateViewFromModel() }}
     
-    @IBOutlet private weak var themeLabel: UILabel! { didSet { themeLabel.text = theme.name }}
+    @IBOutlet private weak var themeLabel: UILabel!
     @IBOutlet private weak var flipCountLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
@@ -49,6 +56,7 @@ class ConcentrationViewController: UIViewController {
     private func setTheme() {
         emoji.removeAll()
         view.backgroundColor = theme.backgroundColor
+        themeLabel.text = theme.name
         gameEmojis = theme.emojis
     }
     

@@ -20,6 +20,10 @@ class ConcentrationThemeChooserViewController: UIViewController {
     
     // MARK: - Methods
     
+    override func awakeFromNib() {
+        splitViewController?.delegate = self
+    }
+    
     @IBAction func themeButtonPressed(_ sender: UIButton) {
         // If a game was started, just change themes rather than segue
         if let cvc = splitViewDetailConcentrationViewController {
@@ -50,6 +54,10 @@ class ConcentrationThemeChooserViewController: UIViewController {
             }
         }
     }
-    
+}
 
+extension ConcentrationThemeChooserViewController: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
+    }
 }
