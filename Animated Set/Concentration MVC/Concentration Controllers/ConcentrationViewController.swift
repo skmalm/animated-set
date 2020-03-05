@@ -21,6 +21,7 @@ class ConcentrationViewController: UIViewController {
     var concentrationGameStarted = false
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
         if !concentrationGameStarted {
             startNewGame()
             concentrationGameStarted = true

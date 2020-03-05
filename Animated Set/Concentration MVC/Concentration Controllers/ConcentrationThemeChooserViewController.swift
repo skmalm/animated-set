@@ -24,6 +24,10 @@ class ConcentrationThemeChooserViewController: UIViewController {
         splitViewController?.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     @IBAction func themeButtonPressed(_ sender: UIButton) {
         // If a game was started, just change themes rather than segue
         if let cvc = splitViewDetailConcentrationViewController {
