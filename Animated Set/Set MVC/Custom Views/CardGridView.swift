@@ -210,7 +210,8 @@ extension CardGridView {
     private struct Constants {
         static let cardAspectRatio: CGFloat = 0.57
         static let cellInsetValue: CGFloat = 4.0
-        static let selectionBorderWidth: CGFloat = 50.0
+        // selection border width arbitrarily large to cover card of any size
+        static let selectionBorderWidth: CGFloat = 9999.0
         static let flyInDuration: TimeInterval = 0.5
         // flyDelayIncrement controls how long new cards wait to fly in
         static let flyDelayIncrement: TimeInterval = 0.1
