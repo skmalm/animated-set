@@ -38,7 +38,7 @@ class ConcentrationViewController: UIViewController {
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private var cardButtons: [UIButton]!
     
-    @IBOutlet private weak var newGameButton: UIButton!
+    @IBOutlet private weak var newGameButton: UIButton! { didSet { newGameButton.layer.cornerRadius = Constants.buttonCornerRadius }}
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
         startNewGame()
     }
@@ -104,5 +104,10 @@ class ConcentrationViewController: UIViewController {
             timer?.invalidate()
         }
     }
-    
+}
+
+extension ConcentrationViewController {
+    struct Constants {
+        static let buttonCornerRadius: CGFloat = 6.0
+    }
 }
