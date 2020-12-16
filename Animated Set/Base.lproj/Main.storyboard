@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AWp-Cb-Xmq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AWp-Cb-Xmq">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -676,16 +676,16 @@ c a r d</string>
             <point key="canvasLocation" x="653" y="1789"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VDL-h9-ewh"/>
+    </inferredMetricsTieBreakers>
     <resources>
-        <image name="questionmark.circle" catalog="system" width="64" height="60"/>
-        <image name="questionmark.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="suit.diamond" catalog="system" width="52" height="64"/>
-        <image name="suit.diamond.fill" catalog="system" width="52" height="64"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <image name="questionmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="suit.diamond" catalog="system" width="107" height="128"/>
+        <image name="suit.diamond.fill" catalog="system" width="107" height="128"/>
         <namedColor name="FaceDownColor">
             <color red="0.71799999475479126" green="0.082999996840953827" blue="0.004999999888241291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="VDL-h9-ewh"/>
-    </inferredMetricsTieBreakers>
 </document>
